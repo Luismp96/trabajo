@@ -3,8 +3,6 @@ window.onload = function(){
 
     cargaNoticias();
 
-    
-
     document.getElementById('iniciarsesion').onclick = function(){
         console.log("Vamos a Iniciar Sesion");
 
@@ -639,6 +637,8 @@ window.onload = function(){
         cargaJornadas();
     }
 
+
+
 }
 
 //CARGA DE UN ARTICULO EN CONCRETO
@@ -715,6 +715,8 @@ function cargaNoticias(){
 
         if (valorCookie("usuario") != "" && valorCookie("usuario") != undefined){
             document.getElementById('registro').style.display = "none";
+        }else{
+            document.getElementById('buscador').style.display = "none";
         }
 
         let plantilla = document.getElementById('plantillanoticia');
