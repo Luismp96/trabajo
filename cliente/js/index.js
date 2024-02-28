@@ -310,6 +310,8 @@ window.onload = function(){
                     equipo.setAttribute("value","");
                     equipojugador.appendChild(equipo);
                 }
+
+                equipojugador.disabled=true;
                     
             })
 
@@ -393,6 +395,225 @@ window.onload = function(){
             }
             
         }
+
+        //BOTON BUSCAR JUGADOR
+        let boton2 = document.getElementById("buscarJugador");
+        boton2.style.display="block";
+        boton2.innerHTML = "Buscar Jugador";
+        boton2.classList.add("botonbuscarjugador");
+        boton2.onclick = null;
+        boton2.setAttribute("id","buscarjugador");
+        boton2 =  document.getElementById("buscarjugador");
+
+        boton2.onclick = function(){
+
+            var busqueda = document.getElementById('buscador').value;
+            var busquedaminus = busqueda.toLowerCase();
+
+            let seccion = document.querySelector('section');
+            seccion.innerHTML = "";
+            console.log("Buscamos Jugador...");
+
+            fetch("../../trabajo/API/alljugadores.php")
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(datos){
+                console.log(datos);
+
+                let plantilla = document.getElementById('plantillajugadoresb');
+                let seccion = document.querySelector('section');
+                seccion.innerHTML = "";
+
+                let texto = document.createElement('p');
+                texto.innerHTML="RESULTADOS DE LA BUSQUEDA";
+                texto.style.color="green";
+
+                seccion.appendChild(texto);
+
+                let salto = document.createElement('br');
+                seccion.appendChild(salto);
+
+                let contador = 0;
+
+                for(let i=0;i<datos.length;i++){
+
+                    
+                    let nombre = datos[i].nombre;
+                    let nombreminus = nombre.toLowerCase();
+
+                    if(nombreminus.indexOf(busquedaminus) != -1){
+
+                        let importado = document.importNode(plantilla.content,true);
+
+                        importado.querySelector('article').setAttribute('name',datos[i].identificador);
+                        importado.querySelector('h3').textContent = datos[i].nombre;
+        
+                        let p = document.createElement('p');
+                    
+                        fetch("../../trabajo/API/equipojugador.php?id="+datos[i].id_equipo)
+                        .then(function(response){
+                            return response.json()
+                        })
+
+                        .then(function(datos){
+                            console.log(datos);
+                            p.innerHTML=datos.equipo;
+                            p.style.color="white";
+                        })
+        
+                        importado.getElementById('equipojugador').appendChild(p);
+                        importado.getElementById('equipojugador').style.color="orange";
+
+                        let p1 = document.createElement('p');
+
+                        fetch("../../trabajo/API/posicionjugador.php?id="+datos[i].id_posicion)
+                        .then(function(response){
+                            return response.json()
+                        })
+
+                        .then(function(datos){
+                            console.log(datos);
+                            p1.innerHTML=datos.posicion;
+                            p1.style.color="white";
+                        })
+                            
+                        importado.getElementById('posicionjugador').appendChild(p1);
+                        importado.getElementById('posicionjugador').style.color="orange";
+        
+                        let p2 = document.createElement('p');
+                        p2.innerHTML=datos[i].dorsal;
+                        p2.style.color="white";
+        
+                        importado.getElementById('dorsaljugador').appendChild(p2);
+                        importado.getElementById('dorsaljugador').style.color="orange";
+
+                        seccion.appendChild(importado);
+
+                        contador ++;
+                        
+                    }
+
+                }
+                
+            })
+
+        }
+
+        //BOTON BUSCAR EQUIPO
+        let boton3 = document.getElementById("buscarEquipo");
+        boton3.style.display="block";
+        boton3.innerHTML = "Buscar Equipo";
+        boton3.classList.add("botonbuscarequipo");
+        boton3.onclick = null;
+        boton3.setAttribute("id","buscarequipo");
+        boton3 =  document.getElementById("buscarequipo");
+
+        boton3.onclick = function(){
+
+            var busqueda = document.getElementById('buscador').value;
+            var busquedaminus = busqueda.toLowerCase();
+
+            let seccion = document.querySelector('section');
+            seccion.innerHTML = "";
+            console.log("Buscamos Equipo...");
+
+            fetch("../../trabajo/API/allequipos.php")
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(datos){
+
+                console.log(datos);
+
+                let plantilla = document.getElementById('plantillaequipob');
+                let seccion = document.querySelector('section');
+                seccion.innerHTML = "";
+
+                let texto = document.createElement('p');
+                texto.innerHTML="RESULTADOS DE LA BUSQUEDA";
+                texto.style.color="green";
+
+                seccion.appendChild(texto);
+
+                let salto = document.createElement('br');
+                seccion.appendChild(salto);
+
+                let contador = 0;
+                
+                for(let i=0;i<datos.length;i++){
+
+                    let posicion = 0;
+
+                    let nombre = datos[i].nombre;
+                    let nombreminus = nombre.toLowerCase();
+
+                    if(nombreminus.indexOf(busquedaminus) != -1){
+
+                        let importado = document.importNode(plantilla.content,true);
+
+                        importado.querySelector('article').setAttribute('name',datos[i].identificador);
+                        importado.querySelector('h3').textContent = datos[i].nombre;
+
+                        let p = document.createElement('p');
+            
+                        fetch("../../trabajo/API/clasificacion.php")
+                        .then(function(response){
+                            return response.json()
+                        })
+
+                        .then(function(datos1){
+                            console.log(datos1);
+
+                            for(let j=0;j<datos1.length;j++){
+
+                                posicion++;
+
+                                console.log(datos1[j].nombre);
+                                console.log(datos[i].nombre);
+                                console.log(posicion);
+
+                                if (datos1[j].nombre == datos[i].nombre){
+                                    console.log("Es el equipo que buscamos");
+                                    
+                                    var puesto = posicion;
+                                }
+
+                                
+                            }
+
+                            p.innerHTML=puesto;
+                            p.style.color="white";
+                            
+                        })
+            
+                        importado.getElementById('posicion').appendChild(p);
+                        importado.getElementById('posicion').style.color="orange";
+    
+                        let p1 = document.createElement('p');
+                        p1.innerHTML=datos[i].puntos;
+                        p1.style.color="white";
+                                
+                        importado.getElementById('ptotales').appendChild(p1);
+                        importado.getElementById('ptotales').style.color="orange";
+            
+                        let p2 = document.createElement('p');
+                        p2.innerHTML=datos[i].numerojugadores;
+                        p2.style.color="white";
+            
+                        importado.getElementById('njugadores').appendChild(p2);
+                        importado.getElementById('njugadores').style.color="orange";
+    
+                        seccion.appendChild(importado);
+    
+                        contador ++;
+                    }
+                }
+            })
+
+        }
+
+
     }else{
         document.getElementById('anadirJugador').style.display = "none";
         console.log("El usuario no existe.");

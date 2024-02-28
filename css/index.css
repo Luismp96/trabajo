@@ -8,55 +8,65 @@ body,html{
     background:blue;
     font-family: sans-serif;
     height: 100%;
+    
 }
 
 header{
     width: 100%;
-    height: 150px;
     border-bottom:var(--gris);
     background: linear-gradient(blue, black);
+    padding-top: 50px;
     text-align: center;
+}
+header table{
+    width: 100%;
 }
 
 header h1{
-    display: inline-block;
     width: 20%;
 }
-
-header .contenedor{
-    padding-top: 50px;
+header button{
+  
+    margin:5px;
 }
-
-
 header input{
     padding: 5px;
-    width: 220px;
-    margin-left: 20px;
-    margin-bottom: 20px;
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
     margin-right: 5px;
+    border: 2px solid black;
+}
+
+header .contenedor2 ul {
+    list-style-type: none; 
+    margin: 0; 
+    display: flex; 
+    margin-left: 30%;
+}
+header .contenedor2 ul li {
+    margin: 0 10px; 
 }
 
 
 
-
-.contenedor{
-    width: 800px;
-    margin: auto;
-}
-
-.contenedor h1{
+header .contenedor h1{
 
     color:white;
     text-align: center;
+    padding-top: 10px;
 }
 
-.contenedor #iniciarsesion, .contenedor #registro{
-    width: 20%;
-    height: 30px;
+header .contenedor #iniciarsesion, .contenedor #registro{
+    width: 15%;
+    height: 40px;
     background-color: rgba(46, 183, 138, 1);
+    border-radius: 5px;
+    
 }
 
-.contenedor ul{
+header .contenedor ul{
     display: flex;
     flex-wrap: nowrap;
     padding-bottom: 1rem;
@@ -65,6 +75,8 @@ header input{
     text-align: center;
     text-decoration: none;
     list-style: none;
+    text-align: center;
+    margin-left: 22%;
 }
 
 .equiposseleccionados{
@@ -75,19 +87,10 @@ header input{
     display: flex; 
     justify-content: space-around; 
 }
-.contenedor2 {
-    display: flex; 
-    justify-content: space-around; 
-    
-}
-.contenedor2 ul {
-    list-style-type: none; 
-    padding: 0; 
-    margin: 0; 
-    display: flex; 
-}
-.contenedor2 ul li {
-    margin: 0 10px; 
+
+.contenedor3{
+    text-align: center;
+
 }
 
 
@@ -111,7 +114,7 @@ main{
     min-height: 100vh;
     background: black;
 }
-main .contenedor{
+main .contenedor3{
     height: 100%;
     width: 100%;
     flex:1;
@@ -154,7 +157,7 @@ section{
 section article {
     box-sizing: border-box;
     padding: 20px;
-    border: 2px white solid;
+    border: 1px white solid;
     text-align: center;
     background-color: black;
     color:white;
@@ -228,7 +231,7 @@ section article *{
     padding: 10px;
     background: red;
     color:white;
-    border:0px;
+    border:2px solid black;
     border-radius: 5px;
 }
 
@@ -236,7 +239,23 @@ section article *{
     padding: 10px;
     background: green;
     color:white;
-    border:0px;
+    border:2px solid black;
+    border-radius: 5px;
+}
+.contenedor .botonbuscarjugador{
+    padding: 10px;
+    background: yellow;
+    color:black;
+    border:2px solid black;
+    border-radius: 5px;
+
+}
+
+.contenedor .botonbuscarequipo{
+    padding: 10px;
+    background: yellow;
+    color:black;
+    border:2px solid black;
     border-radius: 5px;
 }
 
@@ -348,6 +367,23 @@ section article *{
     justify-content: space-around; 
     align-items: center;
     color:green;
+    padding: 0;
+}
+
+.jornadas #elocal{
+
+    padding: 5px;
+}
+.jornadas #evisitante{
+    padding: 5px;
+}
+
+.tablajornadas{
+    box-sizing: border-box;
+}
+.tablajornadas tr td{
+    border: 1px solid white;
+    width: 200px;
 }
 
 
@@ -361,3 +397,4 @@ section article *{
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
 }
+

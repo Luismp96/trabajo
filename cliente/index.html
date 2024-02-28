@@ -13,26 +13,46 @@
 
     <body>
         <header>
-            <div class="contenedor">
-                <h1>LIGA</h1>
-                <input type="text" id="buscador">
-                <button id="iniciarsesion">Iniciar Sesion</button>
-                <button id="anadirJugador" class="botonnuevojugador">Añadir Jugador</button>
-                <button id="registro">Registrate</button>
-            </div>
+            <table class="tablageneral">
 
-            <div class="contenedor2">
-                <ul>
-                    <div id="botonmenu1"><li><a href="#">INICIO</a></li></div>
-                    <div id="botonmenu2"><li><a href="#">EQUIPOS</a></li></div>
-                    <div id="botonmenu3"><li><a href="#">COMPETICIONES</a></li></div>
-                    <div id="botonmenu4"><li><a href="#">JORNADAS</a></li></div>
-                </ul>
-            </div>
+                <tr>
+                    <td>
+                        <div class="contenedor">
+                            <ul>
+                                <h1>LIGA</h1>
+                                <input type="text" id="buscador" style="display: none;">
+                                <button id="iniciarsesion">Iniciar Sesion</button>
+                                <button id="anadirJugador" class="botonnuevojugador">Añadir Jugador</button>
+                                <button id="buscarJugador" class="botonbuscarjugador" style="display: none;">Buscar Jugador</button>
+                                <button id="buscarEquipo" class="botonbuscarequipo" style="display: none;">Buscar Jugador</button>
+                                <button id="registro">Registrate</button>
+
+                            </ul>
+                            
+                        </div>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        <div class="contenedor2">
+                            <ul>
+                                <div id="botonmenu1"><li><a href="#">INICIO</a></li></div>
+                                <div id="botonmenu2"><li><a href="#">EQUIPOS</a></li></div>
+                                <div id="botonmenu3"><li><a href="#">COMPETICIONES</a></li></div>
+                                <div id="botonmenu4"><li><a href="#">JORNADAS</a></li></div>
+                            </ul>
+                        </div>
+                    </td>
+                    
+                </tr>
+
+            </table>
+            
 
         </header>
         <main>
-            <div class="contenedor">
+            <div class="contenedor3">
                 <nav>
 
                 </nav>
@@ -74,6 +94,27 @@
                         <div id="ptotales">
                             PUNTOS TOTALES (LIGA)
                             <p>Puntos Totales</p>
+                        </div>
+                        <div id="njugadores">
+                            NUMERO JUGADORES
+                        </div>
+                            
+                    </div>
+                    
+                </article>
+            </template>
+            <!--plantilla para los equipos busqueda-->
+            <template id="plantillaequipob">
+                <article>
+                    <h3>Nombre del Equipo</h3>
+                    <br><br>
+                    <div class="descripcionequipo">
+                        
+                        <div id="posicion">
+                            POSICION
+                        </div>
+                        <div id="ptotales">
+                            PUNTOS TOTALES (LIGA)
                         </div>
                         <div id="njugadores">
                             NUMERO JUGADORES
@@ -138,18 +179,35 @@
             <!--plantilla para las jornadas-->
             <template id="plantillajornadas">
                 <article class="jornadas">
-                    <div id="elocal">EQUIPO LOCAL
+                    <table class="tablajornadas">
+                        <tr>
+                            <td>
+                                <div id="elocal">EQUIPO LOCAL
                         
-                    </div>
-                    <div id="glocal">GOLES LOCAL
+                                </div>
+                            </td>
+                            <td>
+                                <div id="glocal" style="color:orange">GOLES LOCAL
                         
-                    </div>
-                    <div id="gvisitante">GOLES VISITANTE
+                                </div>
+                            </td>
+                            <td>
+                                <div id="gvisitante" style="color:orange">GOLES VISITANTE
                         
-                    </div>
-                    <div id="evisitante">EQUIPO VISITANTE
+                                </div>
+                            </td>
+                            <td>
+                                <div id="evisitante">EQUIPO VISITANTE
                         
-                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                    
+                    
+                    
+                    
                 </article>
             </template>
             <!--plantilla cabecera de jugadores-->
@@ -182,6 +240,25 @@
                     <div id="datosjugador">
                         <div id="edadjugador">
                             EDAD
+                        </div>
+                        <div id="posicionjugador">
+                            POSICION
+                        </div>
+                        <div id="dorsaljugador">
+                            DORSAL
+                        </div>
+
+                    </div>
+                    
+                </article>
+            </template>
+            <!--plantilla jugadores busqueda-->
+            <template id="plantillajugadoresb">
+                <article class="jugador">
+                    <h3>Nombre Jugador</h3>
+                    <div id="datosjugador">
+                        <div id="equipojugador">
+                            EQUIPO
                         </div>
                         <div id="posicionjugador">
                             POSICION
