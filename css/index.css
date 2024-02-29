@@ -43,7 +43,7 @@ header .contenedor2 ul {
     list-style-type: none; 
     margin: 0; 
     display: flex; 
-    margin-left: 30%;
+    justify-content: center;
 }
 header .contenedor2 ul li {
     margin: 0 10px; 
