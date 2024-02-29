@@ -229,8 +229,8 @@ section article *{
 
 .botonnuevanoticia{
     padding: 10px;
-    background: red;
-    color:white;
+    background: orange;
+    color:black;
     border:2px solid black;
     border-radius: 5px;
 }
@@ -238,7 +238,7 @@ section article *{
 .botonnuevojugador{
     padding: 10px;
     background: green;
-    color:white;
+    color:black;
     border:2px solid black;
     border-radius: 5px;
 }
@@ -254,6 +254,14 @@ section article *{
 .contenedor .botonbuscarequipo{
     padding: 10px;
     background: yellow;
+    color:black;
+    border:2px solid black;
+    border-radius: 5px;
+}
+
+.contenedor .logoff{
+    padding: 10px;
+    background: red;
     color:black;
     border:2px solid black;
     border-radius: 5px;
