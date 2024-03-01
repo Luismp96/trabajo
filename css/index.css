@@ -37,6 +37,7 @@ header input{
     margin-bottom: 10px;
     margin-right: 5px;
     border: 2px solid black;
+    border-radius: 5px;
 }
 
 header .contenedor2 ul {
@@ -58,11 +59,12 @@ header .contenedor h1{
     padding-top: 10px;
 }
 
-header .contenedor #iniciarsesion, .contenedor #registro{
+header .contenedor #iniciarsesion, .contenedor #registro, header .contenedor #consulta{
     width: 15%;
     height: 40px;
     background-color: rgba(46, 183, 138, 1);
     border-radius: 5px;
+    font-weight: bold;
     
 }
 
@@ -76,7 +78,7 @@ header .contenedor ul{
     text-decoration: none;
     list-style: none;
     text-align: center;
-    margin-left: 22%;
+    margin-left: 10%;
 }
 
 .equiposseleccionados{
@@ -153,6 +155,9 @@ section{
     background-color: black;
     text-align: center;
 }
+section .cabeceraformregistro{
+    padding-top: 20px ;
+}
 
 section article {
     box-sizing: border-box;
@@ -180,7 +185,7 @@ section article *{
 
 #contenedormodal{
     width: 500px;
-    height: 500px;
+    height: 300px;
     box-sizing: border-box;
     position: absolute;
     top: 50%;
@@ -192,7 +197,7 @@ section article *{
     box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
     padding: 20px;
     border: 2px white solid;
-    background: linear-gradient(brown, black);
+    background: linear-gradient(blue, black);
 }
 
 #contenedormodal *{
@@ -287,25 +292,29 @@ section article *{
 }
 
 .formularioregistro{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
     box-sizing: border-box;
     font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
+    
 }
+.formularioregistro input{
 
-.formularioregistro input,
-.formularioregistro p{
-    width: 100%;
-    padding: 10px;
+    width: 50%;
+    padding: 20px;
     box-sizing: border-box;
     margin-bottom: 5px;
+    border-radius: 5px;
 }
 
 .formularioregistro button{
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: green;
-    width: 100%;
+    width: 50%;
     padding: 10px;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
@@ -320,18 +329,28 @@ section article *{
 .contenedorinterior textarea,
 .contenedorinterior select
 {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     box-sizing: border-box;
+    border-radius: 5px;
 }
 
-.contenedorinterior1 input, 
+.contenedorinterior1{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedorinterior1 input,
 .contenedorinterior1 textarea,
-.contenedorinterior1 select
+.contenedorinterior1 select,
+
+.contenedorinterior1 .botonenviarjugador
 {
-    width: 100%;
-    padding: 10px;
+    width: 50%;
+    padding: 15px;
     box-sizing: border-box;
+    border-radius: 5px;
 }
 
 .contenedorinterior button{
@@ -343,6 +362,19 @@ section article *{
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    border-radius: 5px;
+}
+
+.contenedorinterior1 button{
+    padding: 10px;
+    margin-top: 20px;
+    background-color: green;
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 .insertcorrecto{

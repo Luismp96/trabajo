@@ -31,7 +31,6 @@ window.onload = function(){
 
                 if(datos.llave == 'si'){
                     document.getElementById('modal').style.display = "none";
-                    document.getElementById('registro').style.display = "none";
                     document.cookie = "usuario=" + nombre + ";";
                 }
 
@@ -50,69 +49,46 @@ window.onload = function(){
         let seccion = document.querySelector('section');
         seccion.innerHTML = "";
 
+        let cabecera = document.createElement('p');
+        cabecera.innerHTML = "REGISTRO NUEVO USUARIO";
+        cabecera.style.color = "red";
+        cabecera.style.fontWeight="bold";
+        cabecera.classList.add('cabeceraformregistro')
+        seccion.appendChild(cabecera);
+
         //DIV CONTENEDOR FORM REGISTRO
         let div = document.createElement("div");
         div.classList.add("formularioregistro");
         seccion.appendChild(div);
-
-        //INPUT PARA EL NOMBRE DE USUARIO
-        let texto1 = document.createElement("p");
-        texto1.innerHTML = "Introduce Nombre Usuario: ";
-        texto1.style.color = "white";
-        div.appendChild(texto1);
         
         let inputusuario = document.createElement("input");
         inputusuario.setAttribute("type","text");
+        inputusuario.placeholder = "Nombre de Usuario...";
         div.appendChild(inputusuario);
-
-        //INPUT PARA CONTRASEÑA
-        let texto2 = document.createElement("p");
-        texto2.innerHTML = "Introduce Contraseña: ";
-        texto2.style.color = "white";
-        div.appendChild(texto2);
         
         let inputcontrasena = document.createElement("input");
         inputcontrasena.setAttribute("type","password");
+        inputcontrasena.placeholder = "Contraseña...";
         div.appendChild(inputcontrasena);
-
-        //INPUT PARA NOMBRE
-        let texto3 = document.createElement("p");
-        texto3.innerHTML = "Introduce Nombre: ";
-        texto3.style.color = "white";
-        div.appendChild(texto3);
         
         let inputnombre = document.createElement("input");
         inputnombre.setAttribute("type","text");
+        inputnombre.placeholder = "Nombre...";
         div.appendChild(inputnombre);
-
-        //INPUT PARA APELLIDOS
-        let texto4 = document.createElement("p");
-        texto4.innerHTML = "Introduce Apellidos: ";
-        texto4.style.color = "white";
-        div.appendChild(texto4);
         
         let inputapellidos = document.createElement("input");
         inputapellidos.setAttribute("type","text");
+        inputapellidos.placeholder = "Apellidos...";
         div.appendChild(inputapellidos);
-
-        //INPUT PARA EMAIL
-        let texto5 = document.createElement("p");
-        texto5.innerHTML = "Introduce E-Mail: ";
-        texto5.style.color = "white";
-        div.appendChild(texto5);
         
         let inputemail = document.createElement("input");
         inputemail.setAttribute("type","email");
+        inputemail.placeholder = "E-Mail...";
         div.appendChild(inputemail);
-
-        //INPUT PARA LOCALIDAD
-        let texto6 = document.createElement("p");
-        texto6.innerHTML = "Introduce Localidad: ";
-        texto6.style.color = "white";
-        div.appendChild(texto6);
         
         let inputlocalidad = document.createElement("input");
         inputlocalidad.setAttribute("type","text");
+        inputlocalidad.placeholder = "Localidad...";
         div.appendChild(inputlocalidad);
 
         let saltolinea = document.createElement("br");
@@ -142,6 +118,7 @@ window.onload = function(){
         console.log("El usuario existe.");
 
         document.getElementById('registro').style.display = "none";
+        document.getElementById('consulta').style.display = "none";
 
         //BOTON LOGOFF
         let botonlogoff = document.getElementById("logoff");
@@ -349,7 +326,7 @@ window.onload = function(){
             let opciondefecto1 = document.createElement("option");
             opciondefecto1.setAttribute("value","");
             opciondefecto1.innerHTML ="Selecciona una Posicion...";
-            usuariojugador.appendChild(opciondefecto1);
+            posicionjugador.appendChild(opciondefecto1);
 
             fetch("../../trabajo/API/allposiciones.php")
 
@@ -380,7 +357,7 @@ window.onload = function(){
 
             //INPUT PARA LA FECHA DE NACIMIENTO
             let texto5 = document.createElement("p");
-            texto5.innerHTML = "Introduce la FECHA DE NACIMIENTO del jugador: ";
+            texto5.innerHTML = "Introduce FECHA DE NACIMIENTO: ";
             texto5.setAttribute("class","textoformjugador");
             contenedor.appendChild(texto5);
             let fechanacimiento = document.createElement("input");
@@ -633,6 +610,8 @@ window.onload = function(){
         document.getElementById('buscador').style.display = "none";
         document.getElementById('anadirJugador').style.display = "none";
         document.getElementById('logoff').style.display = "none";
+        document.getElementById('buscarJugador').style.display = "none";
+        document.getElementById('buscarEquipo').style.display = "none";
         console.log("El usuario no existe.");
     }
     
