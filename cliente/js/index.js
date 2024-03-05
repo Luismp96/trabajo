@@ -3,7 +3,21 @@ window.onload = function(){
 
     cargaNoticias();
 
+/*---------------------------------------------------------------------------------------------------------------------------*/
+/*                    JAVASCRIPT ASOCIADO AL MENU DE ACCIONES (PARA TODO USUARIO - GENERAL)                                  */
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
+    /*CUANDO PINCHAMOS EN BOTON PARA INCIO DE SESION
+      - MOSTRAMOS MODAL QUE TENIAMOS PREVIAMENTE CON DISPLAY - NONE
+      - CARGA PLANTILLA INICIO DE SESION
+      - FETCH A LOGIN.PHP (NOMBRE Y CONTRASEÑA USUARIO)
+            SI RECIBE COMO RESPUESTA 'SI' -> DISPLAY DEL MODAL DE NUEVO A NONE
+                                          -> GUARDAMOS EN COOKIE USUARIO EL VALOR QUE TENGA EL NOMBRE DE USUARIO INTRODUCIDO
+                                          -> REFRESCAMOS LA PAGINA YA CON COOKIE GUARDADA
+            SI RECIBE COMO RESPUESTA 'NO' -> REFRESCAMOS SIMPLEMENTE LA PAGINA
+    */
     document.getElementById('iniciarsesion').onclick = function(){
+
         console.log("Vamos a Iniciar Sesion");
 
         document.getElementById('modal').style.display = "block";
@@ -14,12 +28,11 @@ window.onload = function(){
         document.getElementById('contenedormodal').appendChild(importado);
 
         document.getElementById('enviainiciosesion').onclick = function(){
+
             console.log("Iniciamos Sesion");
+
             let nombre = document.getElementById('usuario').value;
             let contrasena = document.getElementById('contrasena').value;
-
-            console.log(nombre);
-            console.log(contrasena);
 
             fetch("../../trabajo/API/login.php?usuario="+nombre+"&contrasena="+contrasena)
             .then(function(response){
@@ -43,6 +56,11 @@ window.onload = function(){
         }
     }
 
+    /*CUANDO PINCHAMOS EN BOTON PARA REGISTRARSE
+      - BORRAMOS CONTENIDO SE LA SECCION
+      - CREAMOS DIV QUE VA A CONTENER LOS CAMPOS A INTRODUCIR
+      - CUANDO SE COMPLETAN LOS CAMPOS Y DAMOS A BOTON ENVIAR -> FECTH A NUEVOUSUARIO.PHP (DA DE ALTA REGISTRO) Y VUELVE A CARGAR NOTICIAS
+    */
     document.getElementById('registro').onclick = function(){
         console.log("Vamos a Registro");
 
@@ -114,17 +132,24 @@ window.onload = function(){
 
     }
 
+
+/*---------------------------------------------------------------------------------------------------------------------------*/
+/*                    JAVASCRIPT ASOCIADO AL MENU DE ACCIONES (USUARIOS YA LOGEADOS)                                         */
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
+    /* SI EN EL VALOR DE LA COOKIE USUARIO TENEMOS ALGUN VALOR GUARDADO
+       - DESHABILITAMOS LOS BOTONES DE REGISTRO DE USUARIO Y DE CONSULTA (BOTON QUE AUN NO FUNCIONA)
+    */
     if (valorCookie("usuario") != "" && valorCookie("usuario") != undefined){
-        console.log("El usuario existe.");
 
         document.getElementById('registro').style.display = "none";
         document.getElementById('consulta').style.display = "none";
 
+        //************* */
         //BOTON LOGOFF
+        //************* */
         let botonlogoff = document.getElementById("logoff");
         botonlogoff.innerHTML = "LOG OFF";
-       
-        //Se quita onclik (=null) para que no vaya a inicio de sesion de nuevo.
         botonlogoff.onclick = null;
        
         botonlogoff =  document.getElementById("logoff");
@@ -136,10 +161,12 @@ window.onload = function(){
             window.location = window.location;
         }
 
-
+        //************* */
         //BOTON NUEVA NOTICIA
+        //************* */
+
         let boton = document.getElementById("iniciarsesion");
-        boton.innerHTML = "Nueva Noticia";
+        boton.innerHTML = "NUEVA NOTICIA";
         boton.classList.add("botonnuevanoticia");
         //Se quita onclik (=null) para que no vaya a inicio de sesion de nuevo.
         boton.onclick = null;
@@ -210,14 +237,14 @@ window.onload = function(){
             }
 
             seccion.appendChild(contenedor);
-
             
         }
-
         
+        //************* */
         //BOTON AÑADIR JUGADOR
+        //************* */
         let boton1 = document.getElementById("anadirJugador");
-        boton1.innerHTML = "Nuevo Jugador";
+        boton1.innerHTML = "NUEVO JUGADOR";
         boton1.classList.add("botonnuevojugador");
         boton1.onclick = null;
         boton1.setAttribute("id","nuevojugador");
@@ -373,24 +400,160 @@ window.onload = function(){
             boton.onclick = function(){
                 console.log("Creamos Nuevo Jugador...");
 
-                fetch("../../trabajo/API/insertarjugador.php?nombre="+nombrejugador.value+"&idusuario="+usuariojugador.value+"&idequipo="+equipojugador.value+"&edad="
-                +edadjugador.value+"&idposicion="+posicionjugador.value+"&dorsal="+dorsaljugador.value+"&fechanacimiento="+fechanacimiento.value)
+                //VALIDAMOS QUE NO EXISTA
+                var existe = false;
 
+                var nombrein = nombrejugador.value;
+                var nombreinminus = nombrein.toLowerCase();
+
+                console.log(nombreinminus);
+
+                fetch("../../trabajo/API/alljugadores.php")
+
+                .then(function(response){
+                    return response.json()
+                })
                 .then(function(datos){
+
                     console.log(datos);
-                    cargaNoticias();
-                    window.location = window.location;
-                    
+
+                    for(let i=0;i<datos.length;i++){
+
+                        var nombrerecogido = datos[i].nombre;
+                        var nombrerecogidominus = nombrerecogido.toLowerCase();
+
+                        console.log(nombreinminus);
+                        console.log(nombrerecogidominus);
+
+                        if(nombrerecogidominus == nombreinminus){
+                            console.log("Encontramos Jugador con mismo nombre.");
+                            existe = true;
+                        }
+                    }
+
+                    console.log(existe);
+
+                    if(existe){
+
+                        console.log("Entramos IF");
+                        //INPUT PARA EL NOMBRE DEL JUGADOR
+
+                        if (document.getElementById("mensajeerror") != null){
+                            console.log("Error se repite");
+                        }else{
+                            let texto = document.createElement("p");
+                            texto.setAttribute("id","mensajeerror");
+                            texto.innerHTML = "Ya existe un jugador con ese nombre.";
+                            texto.style.color="red";
+                            contenedor.appendChild(texto);
+                        }
+
+                    }else{
+                        console.log("Entramos ELSE");
+                        fetch("../../trabajo/API/insertarjugador.php?nombre="+nombrejugador.value+"&idusuario="+usuariojugador.value+"&idequipo="+equipojugador.value+"&edad="
+                        +edadjugador.value+"&idposicion="+posicionjugador.value+"&dorsal="+dorsaljugador.value+"&fechanacimiento="+fechanacimiento.value)
+    
+                        .then(function(datos){
+                            console.log(datos);
+                            cargaNoticias();
+                            //window.location = window.location;
+                        //   
+                        })
+                    }
+
                 })
 
+                
             }
             
         }
 
+        //************* */
+        //BOTON ELIMINAR JUGADOR
+        //************* */
+
+        let botoneliminar = document.getElementById("eliminarJugador");
+        botoneliminar.onclick = null;
+        botoneliminar.setAttribute("id","eliminarJugador");
+        botoneliminar =  document.getElementById("eliminarJugador");
+
+        botoneliminar.onclick = function(){
+
+            let seccion = document.querySelector('section');
+            seccion.innerHTML = "";
+
+            let contenedor = document.createElement("div");
+            contenedor.classList.add("contenedorinterior");
+
+            let texto1 = document.createElement("p");
+            texto1.innerHTML = "Selecciona Jugador a ELIMINAR: ";
+            texto1.setAttribute("class","textoformjugador");
+            contenedor.appendChild(texto1);
+
+            //SELECT PARA JUGADOR
+            let jugador = document.createElement("select");
+            contenedor.appendChild(jugador);
+
+            fetch("../../trabajo/API/equipousuario.php?usuario="+valorCookie('usuario'))
+
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(datos){
+
+                let idequipousuario = datos[0].idequipo;
+
+                fetch("../../trabajo/API/alljugadores.php")
+                .then(function(response){
+                    return response.json()
+                })
+                .then(function(datos){
+                    console.log(datos);
+
+
+                    for(let i=0;i<datos.length;i++){
+
+                        if(idequipousuario == datos[i].id_equipo){
+                            let opcion = document.createElement("option");
+                            opcion.setAttribute("value",datos[i].identificador);
+                            opcion.innerHTML = datos[i].nombre;
+                            jugador.appendChild(opcion);
+                        }
+                    }            
+                })
+            })
+
+            contenedor.appendChild(jugador);
+
+            let boton = document.createElement("button");
+            boton.setAttribute("value","enviar");
+            boton.innerHTML = "Enviar";
+
+            contenedor.appendChild(boton);
+            seccion.appendChild(contenedor);
+
+            boton.onclick = function(){
+            console.log("Eliminamos Jugador...");
+
+            console.log(jugador.value);
+
+                fetch("../../trabajo/API/eliminarjugador.php?id="+jugador.value)
+
+                .then(function(datos){
+                    console.log("Se elimina correctamente el Jugador.")
+                })
+                cargaNoticias();
+            }
+
+        }
+
+        //************* */
         //BOTON BUSCAR JUGADOR
+        //************* */
+
         let boton2 = document.getElementById("buscarJugador");
         boton2.style.display="block";
-        boton2.innerHTML = "Buscar Jugador";
+        boton2.innerHTML = "BUSCAR JUGADOR";
         boton2.classList.add("botonbuscarjugador");
         boton2.onclick = null;
         boton2.setAttribute("id","buscarjugador");
@@ -486,15 +649,36 @@ window.onload = function(){
                     }
 
                 }
+
+                let resultado = contador;
+                console.log(resultado);
+
+                if(resultado == 0){
+                    let seccion = document.querySelector('section');
+                    seccion.innerHTML = "";
+
+                    let salto = document.createElement("br");
+                    seccion.appendChild(salto);
+                    seccion.appendChild(salto);
+
+                    let texto = document.createElement('p');
+                    texto.innerHTML="NO HAY RESULTADOS PARA EL JUGADOR BUSCADO";
+                    texto.style.color="red";
+
+                    seccion.appendChild(texto);
+                }
+
                 
             })
 
         }
 
+        //************* */
         //BOTON BUSCAR EQUIPO
+        //************* */
         let boton3 = document.getElementById("buscarEquipo");
         boton3.style.display="block";
-        boton3.innerHTML = "Buscar Equipo";
+        boton3.innerHTML = "BUSCAR EQUIPO";
         boton3.classList.add("botonbuscarequipo");
         boton3.onclick = null;
         boton3.setAttribute("id","buscarequipo");
@@ -599,6 +783,24 @@ window.onload = function(){
                         contador ++;
                     }
                 }
+
+                let resultado = contador;
+                console.log(resultado);
+
+                if(resultado == 0){
+                    let seccion = document.querySelector('section');
+                    seccion.innerHTML = "";
+
+                    let salto = document.createElement("br");
+                    seccion.appendChild(salto);
+                    seccion.appendChild(salto);
+
+                    let texto = document.createElement('p');
+                    texto.innerHTML="NO HAY RESULTADOS PARA EL EQUIPO BUSCADO";
+                    texto.style.color="red";
+
+                    seccion.appendChild(texto);
+                }
                 
             })
 
@@ -612,8 +814,17 @@ window.onload = function(){
         document.getElementById('logoff').style.display = "none";
         document.getElementById('buscarJugador').style.display = "none";
         document.getElementById('buscarEquipo').style.display = "none";
+        document.getElementById('eliminarJugador').style.display = "none";
         console.log("El usuario no existe.");
     }
+
+
+
+/*---------------------------------------------------------------------------------------------------------------------------*/
+/*                    JAVASCRIPT AL MENU DE NAVEGACION (GENERAL PARA TODOS LOS USUARIOS)                                     */
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
+    //SI PINCHAMOS INICIO O TITULO PAGINA -> CARGAMOS NOTICIAS
     
     document.querySelector("h1").onclick = function(){
         cargaNoticias();
@@ -623,18 +834,22 @@ window.onload = function(){
         cargaNoticias();
     }
 
+    //SI PINCHAMOS EQUIPOS -> CARGAMOS EQUIPOS
+
     document.getElementById('botonmenu2').onclick = function(){
         cargaEquipos();
     }
+
+    //SI PINCHAMOS COMPETICIONES -> CARGAMOS COMPETICIONES
 
     document.getElementById('botonmenu3').onclick = function(){
         cargaCompeticiones();
     }
 
+    //SI PINCHAMOS JORNADAS -> CARGAMOS JORNADAS
+
     document.getElementById('botonmenu4').onclick = function(){
         cargaJornadas();
     }
-
-
 
 }

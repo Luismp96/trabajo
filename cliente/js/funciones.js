@@ -1,3 +1,7 @@
+
+/********************************************************************* 
+         FUNCION PARA DEVOLVER EL VALOR ALMACENADO EN COOKIE
+//*******************************************************************/
 function valorCookie(identificador){
     let todaslascookies = document.cookie;
     let partido = todaslascookies.split(";");
@@ -11,8 +15,83 @@ function valorCookie(identificador){
     }
 }
 
+/********************************************************************* 
+         FUNCION PARA INFORMAR DE NOTICIA AÑADIDA CORRECTAMENTE
+//*******************************************************************/
+function cargaNoticiasCorrecto(){
+    fetch("../../trabajo/API/noticias.php")
+    .then(function(response){
+        return response.json()
+    })
 
+    .then(function(datos){
 
+        console.log(datos);
+
+        let plantilla = document.getElementById('plantillanoticia');
+        let seccion = document.querySelector('section');
+        seccion.innerHTML = "";
+
+        let correcto = document.createElement("div");
+        let mensaje = document.createElement("p");
+        correcto.classList.add("insertcorrecto");
+        mensaje.innerHTML = "Se ha insertado correctamente la noticia.";
+        correcto.appendChild(mensaje);
+        seccion.appendChild(correcto);
+
+        for(let i=0;i<datos.length;i++){
+            let importado = document.importNode(plantilla.content,true);
+
+            importado.querySelector('article').setAttribute('name',datos[i].identificador);
+            importado.querySelector('h3').textContent = datos[i].titulo;
+            importado.querySelector('time').textContent = datos[i].fecha;
+            importado.querySelector('p').textContent = datos[i].descripcion;
+
+            importado.querySelector('article').onclick = function(){
+                let identificador = this.getAttribute('name');
+
+                console.log("Has hecho click en la pregunta con ID: " + identificador);
+                console.log(plantilla.content);
+                cargaArticuloSeleccionado(identificador);
+            }
+            seccion.appendChild(importado);
+        }
+    })
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------*/
+/*                    FUNCIONES ASOCIADAS AL MENU DE NAVEGACION (GENERAL PARA TODOS LOS USUARIOS)                            */
+/*---------------------------------------------------------------------------------------------------------------------------*/
+
+/********************************************************************* 
+                  FUNCION PARA CARGAR NOTICIAS
+//*******************************************************************/
+function cargaNoticias(){
+    
+    fetch("../../trabajo/API/noticias.php")
+    .then(function(response){
+        return response.json()
+    })
+
+    .then(function(datos){
+
+        console.log(datos);
+
+        let plantilla = document.getElementById('plantillanoticia');
+        let seccion = document.querySelector('section');
+        seccion.innerHTML = "";
+
+        for(let i=0;i<datos.length;i++){
+            let importado = document.importNode(plantilla.content,true);
+            //SE PASADA IDENTIFICADOR PARA PONER COMO NAME A CADA UNA DE LAS ETIQUETAS HIJAS
+            importado.querySelector('article').setAttribute('name',datos[i].identificador);
+            importado.querySelector('h3').textContent = datos[i].titulo;
+            importado.querySelector('time').textContent = datos[i].fecha;
+            importado.querySelector('p').textContent = datos[i].descripcion;
+            seccion.appendChild(importado);
+        }
+    })
+}
 
 /********************************************************************* 
                   CARGA DE UN ARTICULO EN CONCRETO
@@ -77,38 +156,6 @@ function cargaArticuloSeleccionado(identificador){
 }
 
 
-
-/********************************************************************* 
-                  FUNCION PARA CARGAR NOTICIAS
-//*******************************************************************/
-function cargaNoticias(){
-    
-    fetch("../../trabajo/API/noticias.php")
-    .then(function(response){
-        return response.json()
-    })
-
-    .then(function(datos){
-
-        console.log(datos);
-
-        let plantilla = document.getElementById('plantillanoticia');
-        let seccion = document.querySelector('section');
-        seccion.innerHTML = "";
-
-        for(let i=0;i<datos.length;i++){
-            let importado = document.importNode(plantilla.content,true);
-            //SE PASADA IDENTIFICADOR PARA PONER COMO NAME A CADA UNA DE LAS ETIQUETAS HIJAS
-            importado.querySelector('article').setAttribute('name',datos[i].identificador);
-            importado.querySelector('h3').textContent = datos[i].titulo;
-            importado.querySelector('time').textContent = datos[i].fecha;
-            importado.querySelector('p').textContent = datos[i].descripcion;
-            seccion.appendChild(importado);
-        }
-    })
-}
-
-
 /********************************************************************* 
                    FUNCION PARA CARGAR EQUIPOS
 //*******************************************************************/
@@ -162,96 +209,6 @@ function cargaEquipos(){
         }
     })
 }
-
-
-/********************************************************************* 
-                   FUNCION PARA CARGAR COMPETICIONES
-//*******************************************************************/
-function cargaCompeticiones(){
-
-    fetch("../../trabajo/API/competiciones.php")
-    .then(function(response){
-        return response.json()
-    })
-
-    .then(function(datos){
-
-        console.log(datos);
-
-        if (valorCookie("usuario") != "" && valorCookie("usuario") != undefined){
-            document.getElementById('registro').style.display = "none";
-        }
-
-        let plantilla = document.getElementById('plantillacompeticiones');
-        let seccion = document.querySelector('section');
-        seccion.innerHTML = "";
-
-        for(let i=0;i<datos.length;i++){
-            let importado = document.importNode(plantilla.content,true);
-
-            importado.querySelector('article').setAttribute('name',datos[i].identificador);
-            importado.querySelector('article').style.color="orange";
-            importado.querySelector('h3').style.color="white";
-            importado.querySelector('p').style.color="white";
-            importado.querySelector('h3').textContent = datos[i].nombre;
-            importado.querySelector('p').textContent = datos[i].numeroequipos;
-
-            importado.querySelector('article').onclick = function(){
-                let identificador = this.getAttribute('name');
-
-                console.log("Has hecho click en la competicion con ID: " + identificador);
-                console.log(plantilla.content);
-                cargaCompeticionSeleccionada(identificador);
-            }
-            seccion.appendChild(importado);
-        }
-    })
-}
-
-/********************************************************************* 
-         FUNCION PARA INFORMAR DE NOTICIA AÑADIDA CORRECTAMENTE
-//*******************************************************************/
-function cargaNoticiasCorrecto(){
-    fetch("../../trabajo/API/noticias.php")
-    .then(function(response){
-        return response.json()
-    })
-
-    .then(function(datos){
-
-        console.log(datos);
-
-        let plantilla = document.getElementById('plantillanoticia');
-        let seccion = document.querySelector('section');
-        seccion.innerHTML = "";
-
-        let correcto = document.createElement("div");
-        let mensaje = document.createElement("p");
-        correcto.classList.add("insertcorrecto");
-        mensaje.innerHTML = "Se ha insertado correctamente la noticia.";
-        correcto.appendChild(mensaje);
-        seccion.appendChild(correcto);
-
-        for(let i=0;i<datos.length;i++){
-            let importado = document.importNode(plantilla.content,true);
-
-            importado.querySelector('article').setAttribute('name',datos[i].identificador);
-            importado.querySelector('h3').textContent = datos[i].titulo;
-            importado.querySelector('time').textContent = datos[i].fecha;
-            importado.querySelector('p').textContent = datos[i].descripcion;
-
-            importado.querySelector('article').onclick = function(){
-                let identificador = this.getAttribute('name');
-
-                console.log("Has hecho click en la pregunta con ID: " + identificador);
-                console.log(plantilla.content);
-                cargaArticuloSeleccionado(identificador);
-            }
-            seccion.appendChild(importado);
-        }
-    })
-}
-
 
 /********************************************************************* 
        FUNCION PARA DESPLEGAR EQUIPO SELECCIONADO EN SUS JUGADORES
@@ -364,6 +321,49 @@ function cargaEquipoSeleccionado(identificador){
 
 }
 
+/********************************************************************* 
+                   FUNCION PARA CARGAR COMPETICIONES
+//*******************************************************************/
+function cargaCompeticiones(){
+
+    fetch("../../trabajo/API/competiciones.php")
+    .then(function(response){
+        return response.json()
+    })
+
+    .then(function(datos){
+
+        console.log(datos);
+
+        if (valorCookie("usuario") != "" && valorCookie("usuario") != undefined){
+            document.getElementById('registro').style.display = "none";
+        }
+
+        let plantilla = document.getElementById('plantillacompeticiones');
+        let seccion = document.querySelector('section');
+        seccion.innerHTML = "";
+
+        for(let i=0;i<datos.length;i++){
+            let importado = document.importNode(plantilla.content,true);
+
+            importado.querySelector('article').setAttribute('name',datos[i].identificador);
+            importado.querySelector('article').style.color="orange";
+            importado.querySelector('h3').style.color="white";
+            importado.querySelector('p').style.color="white";
+            importado.querySelector('h3').textContent = datos[i].nombre;
+            importado.querySelector('p').textContent = datos[i].numeroequipos;
+
+            importado.querySelector('article').onclick = function(){
+                let identificador = this.getAttribute('name');
+
+                console.log("Has hecho click en la competicion con ID: " + identificador);
+                console.log(plantilla.content);
+                cargaCompeticionSeleccionada(identificador);
+            }
+            seccion.appendChild(importado);
+        }
+    })
+}
 
 /********************************************************************* 
        FUNCION PARA DESPLEGAR LA COMPETICION SELECCIONADA

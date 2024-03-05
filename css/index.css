@@ -11,6 +11,9 @@ body,html{
     
 }
 
+/******************/
+/* ESTILO HEADER
+/******************/
 header{
     width: 100%;
     border-bottom:var(--gris);
@@ -95,7 +98,9 @@ header .contenedor ul{
 
 }
 
-
+/******************/
+/* ESTILO BOTONES MENU NAVEGACION
+/******************/
 #botonmenu1,#botonmenu2, #botonmenu3, #botonmenu4, #botonmenu5{
     padding: 10px;;
     
@@ -110,6 +115,10 @@ header .contenedor ul{
     padding: 5px;
     text-align: center;
 }
+
+/******************/
+/* ESTILO MAIN
+/******************/
 main{
     height: 100%;
     width: 100%;
@@ -151,6 +160,10 @@ main aside{
 
 }
 
+/******************/
+/* ESTILO SECTION
+/******************/
+
 section{
     background-color: black;
     text-align: center;
@@ -172,6 +185,10 @@ section article *{
     margin-top:5px;
     margin-bottom:5px;
 }
+
+/******************/
+/* ESTILO MODAL
+/******************/
 
 #modal{
     width: 100%;
@@ -210,6 +227,10 @@ section article *{
 }
 
 
+
+/******************/
+/* ESTILO CABECERAS
+/******************/
 .cabecera{
     text-decoration: underline;
     background: linear-gradient(blue, black);
@@ -224,14 +245,59 @@ section article *{
     color: black;
 }
 
+/******************/
+/* ESTILO SIN RESPUESTA
+/******************/
 .sinrespuesta{
     background-color: brown;
 }
 
+/******************/
+/* ESTILO BOTON INICIAR SESION
+/******************/
 #enviainiciosesion{
     background:  rgba(218, 138, 138, 1);
 }
 
+/******************/
+/* ESTILO TITULO NOTICIAS
+/******************/
+.titulonoticia{
+    color: rgba(235, 220, 16, 0.938);
+}
+
+
+/******************/
+/* ESTILO CLASE INSERT CORRECTO
+/******************/
+.insertcorrecto{
+    background-color: green;
+    color: black;
+    padding: 10px;
+    height: 30px;
+    border: 2px white solid;
+    font-weight: bold;
+    text-align: center;
+}
+
+/******************/
+/* ESTILO CLASE INSERT INCORRECTO
+/******************/
+.insertcorrecto p{
+    margin-top: 4px;
+}
+
+/******************/
+/* ESTILO CONTAINER
+/******************/
+.container{
+    width: 100%;
+}
+
+
+/******************/
+/* ESTILO BOTONES DE ACCION
+/******************/
 .botonnuevanoticia{
     padding: 10px;
     background: orange;
@@ -247,6 +313,18 @@ section article *{
     border:2px solid black;
     border-radius: 5px;
 }
+
+.botoneliminarjugador{
+    padding: 10px;
+    background: brown;
+    color:black;
+    border:2px solid black;
+    border-radius: 5px;
+}
+
+/******************/
+/* ESTILO CONTENEDOR 
+/******************/
 .contenedor .botonbuscarjugador{
     padding: 10px;
     background: yellow;
@@ -272,25 +350,9 @@ section article *{
     border-radius: 5px;
 }
 
-.textoformnoticia{
-    color: white;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-
-.textoformjugador{
-    color: white;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-
-.contenedorinterior{
-    padding: 20px;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-family: 'Courier New', Courier, monospace;
-}
-
+/******************/
+/* ESTILO FORMULARIO REGISTRO
+/******************/
 .formularioregistro{
     display:flex;
     flex-direction: column;
@@ -321,9 +383,22 @@ section article *{
     font-weight: bold;
 }
 
-.titulonoticia{
-    color: rgba(235, 220, 16, 0.938);
+.textoformnoticia{
+    color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
+
+.textoformjugador{
+    color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+
+/******************/
+/* ESTILO CONTENEDOR INTERIOR
+/******************/
 
 .contenedorinterior input, 
 .contenedorinterior textarea,
@@ -335,12 +410,35 @@ section article *{
     border-radius: 5px;
 }
 
+.contenedorinterior{
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+.contenedorinterior button{
+    padding: 10px;
+    margin-top: 20px;
+    background-color: green;
+    width: 70%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/******************/
+/* ESTILO CONTENEDOR INTERIOR 1
+/******************/
 .contenedorinterior1{
     display:flex;
     flex-direction: column;
     align-items: center;
 }
-
 .contenedorinterior1 input,
 .contenedorinterior1 textarea,
 .contenedorinterior1 select,
@@ -350,18 +448,6 @@ section article *{
     width: 50%;
     padding: 15px;
     box-sizing: border-box;
-    border-radius: 5px;
-}
-
-.contenedorinterior button{
-    padding: 10px;
-    margin-top: 20px;
-    background-color: green;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
     border-radius: 5px;
 }
 
@@ -377,30 +463,30 @@ section article *{
     border-radius: 5px;
 }
 
-.insertcorrecto{
-    background-color: green;
-    color: black;
+.contenedorinterior1 button{
     padding: 10px;
-    height: 30px;
-    border: 2px white solid;
-    font-weight: bold;
-    text-align: center;
-}
-.insertcorrecto p{
-    margin-top: 4px;
-}
-
-
-
-.container{
+    margin-top: 20px;
+    background-color: green;
     width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
+
+/******************/
+/* ESTILO CLASE JUGADOR
+/******************/
 .jugador {
     display: flex; 
     justify-content: space-around; 
     align-items: center; 
 }
+
+/******************/
+/* ESTILO CLASE JORNADAS
+/******************/
 
 .jornadas{
     display: flex; 
@@ -427,14 +513,5 @@ section article *{
 }
 
 
-.contenedorinterior1 button{
-    padding: 10px;
-    margin-top: 20px;
-    background-color: green;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-}
+
 

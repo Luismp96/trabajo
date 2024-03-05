@@ -4,11 +4,12 @@
 
     <head>
 
-        <title>LA LIGA</title>
+        <title>YLEAGUE</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/index.css">
         <script src="./js/index.js"></script>
         <script src="./js/funciones.js"></script>
+
     </head>
 
     <body>
@@ -19,15 +20,17 @@
                     <td>
                         <div class="contenedor">
                             <ul>
-                                <h1>LIGA</h1>
-                                <input type="text" id="buscador">
+                                <h1>YLEAGUE</h1>
                                 <button id="iniciarsesion">INICIAR SESION</button>
-                                <button id="anadirJugador" class="botonnuevojugador">AÑADIR JUGADOR</button>
+                                <button id="anadirJugador" class="botonnuevojugador">NUEVO JUGADOR</button>
+                                <button id="eliminarJugador" class="botoneliminarjugador">ELIMINAR JUGADOR</button>
                                 <button id="buscarJugador" class="botonbuscarjugador">BUSCAR JUGADOR</button>
                                 <button id="buscarEquipo" class="botonbuscarequipo">BUSCAR EQUIPO</button>
+                                <input type="text" id="buscador">
                                 <button id="logoff" class="logoff">LOG OFF</button>
                                 <button id="registro">REGISTRATE</button>
                                 <button id="consulta">REALIZAR CONSULTA</button>
+                                
                             </ul>
                             
                         </div>
@@ -73,7 +76,7 @@
         </div>
         
         <div id="plantillas">
-            <!--plantilla para la pregunta-->
+            <!--PLANTILLA PARA LAS NOTICIAS-->
             <template id="plantillanoticia">
                 <article>
                     <h3 class="titulonoticia">Titulo de la Noticia</h3>
@@ -81,7 +84,9 @@
                     <p>Texto de la Noticia</p>
                 </article>
             </template>
-            <!--plantilla para los equipos-->
+
+
+            <!--PLANTILLA PARA LOS EQUIPOS-->
             <template id="plantillaequipo">
                 <article>
                     <h3>Nombre del Equipo</h3>
@@ -104,7 +109,9 @@
                     
                 </article>
             </template>
-            <!--plantilla para los equipos busqueda-->
+
+
+            <!--PLANTILLA PARA LOS EQUIPOS CUANDO REALIZAMOS BUSQUEDA-->
             <template id="plantillaequipob">
                 <article>
                     <h3>Nombre del Equipo</h3>
@@ -125,7 +132,8 @@
                     
                 </article>
             </template>
-            <!--plantilla para los equipos en competiciones-->
+
+            <!--PLANTILLA PARA LOS EQUIPOS CUANDO DESPLEGAMOS LAS COMPETICIONES (CUANDO NO ES LIGA)-->
             <template id="plantillaequipocompeticiones">
                 <article>
                     <h3>Nombre del Equipo</h3>
@@ -144,7 +152,8 @@
                     
                 </article>
             </template>
-            <!--plantilla para los equipos en liga-->
+
+            <!--PLANTILLA PARA LOS EQUIPOS CUANDO CONSULTAMOS LA LIGA-->
             <template id="plantillaequipoliga">
                 <article>
                     <h3>Nombre del Equipo</h3>
@@ -168,7 +177,9 @@
                     
                 </article>
             </template>
-            <!--plantilla para las competiciones-->
+
+
+            <!--PLANTILLA PARA LAS COMPETICIONES-->
             <template id="plantillacompeticiones">
                 <article class="competiciones">
                     <h3>Nombre</h3>
@@ -177,7 +188,8 @@
                     </div>
                 </article>
             </template>
-            <!--plantilla para las jornadas-->
+
+            <!--PLANTILLA PARA LAS JORNADAS-->
             <template id="plantillajornadas">
                 <article class="jornadas">
                     <table class="tablajornadas">
@@ -205,36 +217,40 @@
                         </tr>
 
                     </table>
-                    
-                    
-                    
-                    
+
                 </article>
             </template>
-            <!--plantilla cabecera de jugadores-->
+
+            <!--PLANTILLA CABECERA JUGADORES-->
             <template id="cabecerajugadores">
                 <article class="cabecera">
                     <p>Texto Cabecera</p>
                 </article>
             </template>
-            <!--plantilla cabecera de competiciones no liga-->
+            
+            <!--PLANTILLA CABECERA COMPETICIONES (NO LIGA)-->
             <template id="cabeceracompeticiones">
                 <article class="cabecera">
                     <p>Texto Cabecera</p>
                 </article>
             </template>
+
+            <!--PLANTILLA CABECERA JORNADAS-->
             <template id="cabecerajornada">
                 <article class="cabecera">
                     <p></p>
                 </article>
             </template>
-            <!--plantilla cabecera de competiciones (liga)-->
+
+
+            <!--PLANTILLA COMPETICIONES (liga)-->
             <template id="cabeceraliga">
                 <article class="cabecera">
                     <p>Texto Cabecera</p>
                 </article>
             </template>
-            <!--plantilla jugadores-->
+
+            <!--PLANTILLA JUGADORES-->
             <template id="plantillajugadores">
                 <article class="jugador">
                     <h3>Nombre Jugador</h3>
@@ -253,7 +269,8 @@
                     
                 </article>
             </template>
-            <!--plantilla jugadores busqueda-->
+
+            <!--PLANTILLA JUGADORES EN BUSQUEDA-->
             <template id="plantillajugadoresb">
                 <article class="jugador">
                     <h3>Nombre Jugador</h3>
@@ -272,26 +289,30 @@
                     
                 </article>
             </template>
-            <!--plantilla incio de sesion-->
+
+            <!--PLANTILLA PARA INICIO DE SESION-->
             <template id="iniciosesion">
                 <h3>INICIO DE SESION</h3>
                 <input type="text" id="usuario">
                 <input type="password" id="contrasena">
                 <button id="enviainiciosesion"><b>Entrar</b></button>
             </template>
-            <!--plantilla cuando no hay resultados-->
+
+            <!--PLANTILLAS CUANDO NO HAY RESULTADOS-->
             <template id="plantillasinresultado">
                 <article class="sinrespuesta">
                     <p>No hay respuestas a esta pregunta.</p>
                 </article>
             </template>
-            <!--plantilla cuando no hay equipos en competiciones-->
+
+            <!--PLANTILLA CUANDO NO HAY EQUIPOS EN COMPETICIONES-->
             <template id="plantillasinresultadocompeticion">
                 <article class="sinrespuesta">
                     <p>No hay equipos inscritos en esta competicion.</p>
                 </article>
             </template>
-            <!--plantilla posicion-->
+
+            <!--PLANTILLA CABECERA POSICIONES EN CONSULTA LIGA-->
             <template id="cabeceraposicion">
                 <article class="cabeceraposicion">
                     <p>Numero de Posicion</p>
