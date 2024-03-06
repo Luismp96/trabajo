@@ -162,7 +162,7 @@ function cargaArticuloSeleccionado(identificador){
 
 function cargaEquipos(){
 
-    fetch("../../trabajo/API/equipos.php")
+    fetch("../../trabajo/API/allequipos.php")
     .then(function(response){
         return response.json()
     })
