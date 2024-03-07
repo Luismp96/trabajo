@@ -474,8 +474,8 @@
 
     function formularioActualizar($conexion){
 
-        echo "<h4>Nuevo elemento para la tabla: ".$_GET['tabla']."</h4>";
-        echo "<form action='?accion=actualizar&tabla=".$_GET['tabla']."&id=".$_GET['id']."' method='POST'>";
+        echo "<h4 class='formulariocab'>Actualizar elemento para la tabla: ".$_GET['tabla']."</h4>";
+        echo "<form action='?accion=actualizar&tabla=".$_GET['tabla']."&id=".$_GET['id']."' method='POST' class='formulario'>";
 
         $consulta = "SELECT * FROM ".$_GET['tabla']." WHERE identificador = ".$_GET['id'].";";
         $resultado = mysqli_query($conexion,$consulta);
@@ -802,6 +802,10 @@
                             echo "Modificar Puntuacion:";
                             echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
                             break;
+                        case "identificador":
+                            echo "IDENTIFICADOR NO MODIFICABLE";
+                            echo "<input type='text' name='".$columna."' value='".$campo."' disabled></input>";
+                            break;
                        default:
                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
                     }
@@ -1063,7 +1067,7 @@
                         echo "<p><b>FECHA DE NACIMIENTO: </b></p>";
                         echo "</td>";
                         echo "<td>";
-                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce FECHA DE NACIMIENTO'></input>";
+                        echo "<input type='date' name='".$fila['Field']."' placeholder='Introduce FECHA DE NACIMIENTO'></input>";
                         echo "</td>";
                         break;
                     case ("ciudad"):

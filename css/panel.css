@@ -91,7 +91,7 @@ nav ul li a{
     box-shadow:5px 10px rgba(0,0,0,0.1);
     margin-bottom: 20px;
     overflow-y: scroll;
-    text-align: left;
+    text-align: center;
 }
 table{
     width:100%;
@@ -138,6 +138,13 @@ table #tablaforminsert{
     margin-left: 5px;
 }
 
+#contenedor .formulario{
+    font-weight: bold;
+}
+#contenedor .formulariocab{
+    font-weight: bold;
+    color: red;
+}
 .operaciones{
     width: 200px;
 }
