@@ -132,6 +132,71 @@ window.onload = function(){
 
     }
 
+    /*CUANDO PINCHAMOS EN BOTON PARA REALIZAR CONSULTA
+      - BORRAMOS CONTENIDO SE LA SECCION
+      - CREAMOS DIV QUE VA A CONTENER LOS CAMPOS A INTRODUCIR
+      - CUANDO SE COMPLETAN LOS CAMPOS Y DAMOS A BOTON ENVIAR -> FECTH A NUEVACONSULTA.PHP (DA DE ALTA CONSULTA) Y VUELVE A CARGAR NOTICIAS
+    */
+    document.getElementById('consulta').onclick = function(){
+
+        console.log('Entramos a realizar consulta...');
+
+        let seccion = document.querySelector('section');
+        seccion.innerHTML = "";
+
+        let cabecera = document.createElement('p');
+        cabecera.innerHTML = "CONSULTA GENERAL";
+        cabecera.style.color = "red";
+        cabecera.style.fontWeight="bold";
+        cabecera.style.padding = "20px";
+        seccion.appendChild(cabecera);
+
+        //DIV CONTENEDOR FORM CONSULTA
+        let div = document.createElement("div");
+        div.classList.add("formularioconsulta");
+        seccion.appendChild(div);
+
+        let inputcorreo = document.createElement("input");
+        inputcorreo.setAttribute("type","text");
+        inputcorreo.placeholder = "E-Mail donde recibir respuesta.";
+        div.appendChild(inputcorreo);
+
+        let inputtitulo = document.createElement("input");
+        inputtitulo.setAttribute("type","text");
+        inputtitulo.placeholder = "Titulo de la Consulta.";
+        div.appendChild(inputtitulo);
+
+        let inputresumen = document.createElement("input");
+        inputresumen.setAttribute("id","resumen");
+        inputresumen.setAttribute("rows","4");
+        inputresumen.setAttribute("cols","50");
+        inputresumen.setAttribute("type","text-area");
+        inputresumen.placeholder = "Descripcion de la Consulta.";
+        div.appendChild(inputresumen);
+
+        let saltolinea = document.createElement("br");
+        div.appendChild(saltolinea);
+        let saltolinea1 = document.createElement("br");
+        div.appendChild(saltolinea1);
+
+        let boton = document.createElement("button");
+        boton.setAttribute("value","enviar");
+        boton.innerHTML = "Enviar";
+        div.appendChild(boton);
+
+        boton.onclick = function(){
+            console.log("Registramos Nuevo Consulta...");
+
+                fetch("../../trabajo/API/nuevaconsulta.php?correo="+inputcorreo.value + "&titulo=" +inputtitulo.value + "&resumen=" + inputresumen.value)
+
+                .then(function(response){
+                    return response.json()
+                })
+
+                cargaNoticias();
+        }
+    }
+
 
 /*---------------------------------------------------------------------------------------------------------------------------*/
 /*                    JAVASCRIPT ASOCIADO AL MENU DE ACCIONES (USUARIOS YA LOGEADOS)                                         */
@@ -806,6 +871,81 @@ window.onload = function(){
 
         }
 
+        //PARTE NAV PARA CONTACTO
+        var temporizador;
+
+        //********************/
+        //BOTON CHAT GENERAL
+        //********************/
+
+        let nav = document.querySelector('nav');
+
+        let botonchatgeneral = document.getElementById("chatgeneral");
+        botonchatgeneral.style.display="block";
+        
+
+        nav.appendChild(botonchatgeneral);
+
+        botonchatgeneral.onclick = function(){
+
+            document.querySelector("aside").style.display = "none";
+
+            let seccion = document.querySelector('section');
+            seccion.innerHTML = "";
+            console.log("Vamos a Chat General...");
+
+            let titulo = document.createElement("p");
+            titulo.innerHTML = "CHAT GENERAL";
+            titulo.style.color = "brown";
+            titulo.style.fontSize = "40px";
+            seccion.appendChild(titulo);
+
+            let chatgeneral = document.createElement("div");
+            chatgeneral.setAttribute("id","chat");
+
+            let contienemensajes = document.createElement("div");
+            contienemensajes.setAttribute("id","contienemensajes");
+
+            chatgeneral.appendChild(contienemensajes);
+
+            let tumensaje = document.createElement("p");
+            tumensaje.innerHTML = "Tu mensaje: ";
+            tumensaje.style.color = "white";
+            tumensaje.style.fontSize = "20px";
+
+            chatgeneral.appendChild(tumensaje);
+
+            let inputmensaje = document.createElement("input");
+            inputmensaje.setAttribute("id","mensaje");
+            inputmensaje.setAttribute("type","text");
+            
+            chatgeneral.appendChild(inputmensaje);
+
+            let boton = document.createElement("button");
+            boton.classList.add("botonenviarmensaje");
+            boton.setAttribute("id","botonenviarmensaje");
+            boton.setAttribute("value","enviar");
+            boton.innerHTML = "ENVIAR";
+
+            chatgeneral.appendChild(boton);
+
+            seccion.appendChild(chatgeneral);
+
+            temporizador = setTimeout("bucle()",1000);
+
+            document.getElementById("botonenviarmensaje").onclick = function(){
+                console.log("El mensaje que voy a mandar es: " + document.getElementById("mensaje").value);
+
+                if (inputmensaje.value != ""){
+                    fetch("../../trabajo/API/enviamensaje.php?usuario="+valorCookie("usuario")+"&mensaje=" + inputmensaje.value);
+                    inputmensaje.value = "";
+                }
+                
+            }
+
+
+        }
+
 
     }else{
         document.getElementById('anadirJugador').style.display = "none";
@@ -815,6 +955,10 @@ window.onload = function(){
         document.getElementById('buscarJugador').style.display = "none";
         document.getElementById('buscarEquipo').style.display = "none";
         document.getElementById('eliminarJugador').style.display = "none";
+        document.getElementById('chatgeneral').style.display = "none";
+        document.getElementById('cabeceramiequipo').style.display = "none";
+        document.getElementById('cabecerachats').style.display = "none";
+        document.getElementById('miequipo').style.display = "none";
         console.log("El usuario no existe.");
     }
 
@@ -851,5 +995,65 @@ window.onload = function(){
     document.getElementById('botonmenu4').onclick = function(){
         cargaJornadas();
     }
+    //SI PINCHAMOS EVENTOS -> CARGAMOS EVENTOS
+
+    document.getElementById('botonmenu5').onclick = function(){
+        cargaEventos();
+    }
+    //SI PINCHAMOS TIENDA -> CARGAMOS TIENDA
+
+    document.getElementById('botonmenu6').onclick = function(){
+        cargaTienda();
+    }
+
+}
+
+
+
+//CHAT
+
+var temporizador;
+
+function bucle(){
+    
+    let fecha = new Date();
+
+    console.log("Entramos bucle")
+
+
+        fetch("./mensajes.json?fecha=" + fecha.getUTCSeconds())
+
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(datos){    
+    
+            console.log(datos);
+            
+            cadena = "";
+    
+            for(let i=0;i<datos.length;i++){
+                cadena += `
+                <div class="mensaje">
+                    <div class="usuario">` + datos[i].usuario+ `</div>
+                    <br>
+                    <div class="fecha">`+ datos[i].fecha+`</div>
+                    <div class="texto">`+ datos[i].mensaje+`</div>
+                </div>`
+            }
+    
+            document.getElementById("contienemensajes").innerHTML = cadena;
+            document.getElementById("contienemensajes").scrollTop = 10000000;
+        })
+
+    
+
+    //EL BUCLE SE LLAMA A SI MISMO CADA SEGUNDO
+    clearTimeout(temporizador);
+
+    console.log(document.getElementById("contienemensajes"));
+
+    temporizador = setTimeout("bucle()",1000);
+    
 
 }

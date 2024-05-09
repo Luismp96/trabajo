@@ -5,10 +5,12 @@
     
 }
 body,html{
-    background:blue;
+    background:black;
     font-family: sans-serif;
     height: 100%;
-    
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
 }
 
 /******************/
@@ -71,6 +73,7 @@ header .contenedor #iniciarsesion, .contenedor #registro, header .contenedor #co
     
 }
 
+
 header .contenedor ul{
     display: flex;
     flex-wrap: nowrap;
@@ -101,12 +104,12 @@ header .contenedor ul{
 /******************/
 /* ESTILO BOTONES MENU NAVEGACION
 /******************/
-#botonmenu1,#botonmenu2, #botonmenu3, #botonmenu4, #botonmenu5{
+#botonmenu1,#botonmenu2, #botonmenu3, #botonmenu4, #botonmenu5,#botonmenu6{
     padding: 10px;;
     
 }
 
-#botonmenu1 a, #botonmenu2 a, #botonmenu3 a, #botonmenu4 a, #botonmenu5 a{
+#botonmenu1 a, #botonmenu2 a, #botonmenu3 a, #botonmenu4 a, #botonmenu5 a, #botonmenu6 a{
     text-decoration: none;
     color:white;
 }
@@ -120,56 +123,64 @@ header .contenedor ul{
 /* ESTILO MAIN
 /******************/
 main{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     min-height: 100vh;
     background: black;
 }
 main .contenedor3{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     flex:1;
     box-sizing: border-box;
-    overflow-y:scroll;
+    
 }
 
 main nav{
     width: 20%;
-    height: 100%;
+    height: 100vh;
     box-sizing: border-box;
     border-right: 2px black solid;
     float:left;
     background: black;
+    margin-left: 100px;
+    margin-top: 50px;
 }
 
-main section{
-    width: 60%;
-    height: 100%;
-    box-sizing: border-box;
-    float:left;
-    background: black;
 
-}
+
 main aside{
     width: 20%;
-    height: 100%;
+    height: 100vh;
     box-sizing: border-box;
     border-left: 2px black solid;
-    float:left;
     background: black;
-
+    float:left;
 }
 
 /******************/
 /* ESTILO SECTION
 /******************/
 
-section{
-    background-color: black;
+main section{
+    width: 60%;
+    height: 100vh;
+    box-sizing: border-box;
+    float:left;
+    background: black;
     text-align: center;
 }
+
 section .cabeceraformregistro{
     padding-top: 20px ;
+}
+
+section .botonvermiembros{
+    background-color: blue;
+    color: white;
+    height: 30px;
+    width: 150px;
+    margin-top: 10px;
 }
 
 section article {
@@ -304,6 +315,7 @@ section article *{
     color:black;
     border:2px solid black;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .botonnuevojugador{
@@ -312,15 +324,42 @@ section article *{
     color:black;
     border:2px solid black;
     border-radius: 5px;
+    width: 90%;
+    font-weight: bold;
+    
 }
 
 .botoneliminarjugador{
+    padding: 10px;
+    background: red;
+    color:black;
+    border:2px solid black;
+    border-radius: 5px;
+    width: 90%;
+    font-weight: bold;
+}
+
+.botonchatgeneral{
     padding: 10px;
     background: brown;
     color:black;
     border:2px solid black;
     border-radius: 5px;
+    width: 90%;
+    font-weight: bold;
+    margin-left: 18px;
 }
+
+.botonmiequipo{
+    padding: 10px;
+    background: blue;
+    color:black;
+    border:2px solid black;
+    border-radius: 5px;
+    width: 90%;
+    font-weight: bold;
+}
+
 
 /******************/
 /* ESTILO CONTENEDOR 
@@ -331,7 +370,7 @@ section article *{
     color:black;
     border:2px solid black;
     border-radius: 5px;
-
+    font-weight: bold;
 }
 
 .contenedor .botonbuscarequipo{
@@ -340,6 +379,7 @@ section article *{
     color:black;
     border:2px solid black;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .contenedor .logoff{
@@ -348,6 +388,17 @@ section article *{
     color:black;
     border:2px solid black;
     border-radius: 5px;
+    font-weight: bold;
+}
+
+.contenedor #buscador{
+    padding: 0px;
+    background: beige;
+    color:black;
+    border:2px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 300px;
 }
 
 /******************/
@@ -359,8 +410,8 @@ section article *{
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
     font-size: 16px;
-    font-family: 'Courier New', Courier, monospace;
     
 }
 .formularioregistro input{
@@ -370,6 +421,8 @@ section article *{
     box-sizing: border-box;
     margin-bottom: 5px;
     border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
 }
 
 .formularioregistro button{
@@ -379,8 +432,59 @@ section article *{
     width: 50%;
     padding: 10px;
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+/*FORMULARIO CONSULTA*/
+/*****************************/
+/* ESTILO FORMULARIO CONSULTA
+/*****************************/
+.formularioconsulta{
+    display:flex;
+    flex-direction: column;
+    align-items: center;  
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    
+}
+.formularioconsulta input{
+
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+}
+
+.formularioconsulta #resumen{
+
+    height: 250px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    resize: vertical; 
+}
+
+.formularioconsulta button{
+    padding: 10px;
+    margin-top: 10px;
+    background-color: green;
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .textoformnoticia{
@@ -513,5 +617,55 @@ section article *{
 }
 
 
+/*CHATS*/
+
+#chat{
+    height: 70%;
+}
+
+#chat .botonenviarmensaje{
+    background-color: rgba(73,181,116,100);
+    width: 20%;
+    height: 40px;
+    font-weight: bold;
+}
+
+#contienemensajes{
+
+    height: 80%;
+    background-color:black;
+    border: 1px solid white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    
+}
+
+.mensaje{
+    color: white;
+    background-color: black;
+    border: 2px solid white;;
+}
+
+#mensaje{
+    width: 70%;
+    background: beige;
+    padding: 10px;
+    margin:10px;
+    text-align: left;
+    border-radius: 0%,10%,10%,10%;
+}
+
+
+
+.texto{
+    padding: 10px;
+    font-size: 12px;
+}
+
+#listadousuarios{
+    height: 400px;
+    background-color: yellow;
+}
 
 

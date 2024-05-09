@@ -67,6 +67,8 @@ function cargaNoticiasCorrecto(){
                   FUNCION PARA CARGAR NOTICIAS
 //*******************************************************************/
 function cargaNoticias(){
+
+    document.querySelector("aside").style.display = "none";
     
     fetch("../../trabajo/API/noticias.php")
     .then(function(response){
@@ -572,4 +574,38 @@ function cargaJornadas(){
 
         }
     })
+}
+
+
+/********************************************************************* 
+         FUNCION PARA CARGAR LOS PRODUCTOS DE LA TIENDA
+//*******************************************************************/
+function cargaTienda(){
+
+    fetch("../../trabajo/API/productos.php")
+    .then(function(response){
+        return response.json()
+    })
+
+    .then(function(datos){
+        console.log(datos);
+
+        let plantilla = document.getElementById('plantillaproducto');
+        let seccion = document.querySelector('section');
+        seccion.innerHTML = "";
+
+        for(let i=0;i<datos.length;i++){
+            let importado = document.importNode(plantilla.content,true);
+            let urlfoto = datos[i].imagen;
+            let simeuro = "€";
+            console.log(datos[i].nombre);
+            console.log(datos[i].descripcion);
+            importado.querySelector('img').setAttribute("src",urlfoto);
+            importado.querySelector('h3').innerHTML = datos[i].nombre;
+            importado.querySelector('p').innerHTML = datos[i].descripcion;
+            importado.querySelector('h5').innerHTML = datos[i].precio + simeuro;
+            seccion.appendChild(importado);
+        }
+    })
+
 }

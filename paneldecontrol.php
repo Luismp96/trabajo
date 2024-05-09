@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
     include "log.php";
     include "config.php";
     include "./inc/funciones.php";
@@ -88,12 +89,11 @@
                     ?>
                 </div>
                 <?php
-                    
-   
-
-                ?>
+        
+            ?>
                 
             </section>
+            
         </main>
         
     </body>

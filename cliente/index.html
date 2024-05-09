@@ -11,6 +11,8 @@
         <script src="./js/funciones.js"></script>
         <link rel="icon" href="../img/icono.png" type="image/png">
 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     </head>
 
     <body>
@@ -23,15 +25,12 @@
                             <ul>
                                 <h1>YLEAGUE</h1>
                                 <button id="iniciarsesion">INICIAR SESION</button>
-                                <button id="anadirJugador" class="botonnuevojugador">NUEVO JUGADOR</button>
-                                <button id="eliminarJugador" class="botoneliminarjugador">ELIMINAR JUGADOR</button>
                                 <button id="buscarJugador" class="botonbuscarjugador">BUSCAR JUGADOR</button>
                                 <button id="buscarEquipo" class="botonbuscarequipo">BUSCAR EQUIPO</button>
                                 <input type="text" id="buscador">
                                 <button id="logoff" class="logoff">LOG OFF</button>
                                 <button id="registro">REGISTRATE</button>
                                 <button id="consulta">REALIZAR CONSULTA</button>
-                                
                             </ul>
                             
                         </div>
@@ -46,6 +45,8 @@
                                 <div id="botonmenu2"><li><a href="#">EQUIPOS</a></li></div>
                                 <div id="botonmenu3"><li><a href="#">COMPETICIONES</a></li></div>
                                 <div id="botonmenu4"><li><a href="#">JORNADAS</a></li></div>
+                                <div id="botonmenu5"><li><a href="#">EVENTOS</a></li></div>
+                                <div id="botonmenu6"><li><a href="#">TIENDA</a></li></div>
                             </ul>
                         </div>
                     </td>
@@ -59,7 +60,30 @@
         <main>
             <div class="contenedor3">
                 <nav>
+                    
+                    
+                    <div>
+                        <button id="chatgeneral" class="botonchatgeneral">CHAT GENERAL</button>
+                    </div>
 
+                    <div id="cabeceramiequipo">
+                        <p style="color:white;font-weight: bold;">MI EQUIPO</p>
+                    </div>
+                    
+                    <div>
+                        <button id="anadirJugador" class="botonnuevojugador">NUEVO JUGADOR</button>
+                    </div>
+                    <div>
+                        <button id="eliminarJugador" class="botoneliminarjugador">ELIMINAR JUGADOR</button>
+                    </div>
+                    <div>
+                        <button id="miequipo" class="botonmiequipo">MI EQUIPO</button>
+                    </div>
+                    <br>
+                    <div id="cabecerachats">
+                        <p style="color:white;font-weight: bold;">CHATS</p>
+                    </div>
+                    
                 </nav>
                 <section>
 
@@ -68,6 +92,7 @@
                 <aside>
 
                 </aside>
+
             </div>  
         </main>
 
@@ -319,10 +344,33 @@
                     <p>Numero de Posicion</p>
                 </article>
             </template>
+
+            <!--PLANTILLA PRODUCTOS-->
+            <template id="plantillaproducto">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h3 class="card-title">Titulo Producto</h3>
+                      <p class="card-text">Descripcion Producto</p>
+                      <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            <h5 class="card-title">Precio Producto</h5>
+                        </th>
+                      </tr>
+                      <a href="#" class="btn btn-primary">Añadir al carrito</a>
+                    </div>
+                  </div>
+            </template>
+
         </div>
         <footer>
 
         </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
 
 
