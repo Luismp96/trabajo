@@ -184,6 +184,9 @@
                     case ("numerotarjeta"):
                         echo "<th>TAJETA</th>";
                         break;
+                    case ("productos"):
+                        echo "<th>PRODUCTOS</th>";
+                        break;
                     case ("cvv"):
                         echo "<th>CVV</th>";
                         break;
@@ -871,6 +874,10 @@
                             echo "Modificar Numero Tarjeta:";
                             echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
                             break;
+                        case "productos":
+                            echo "Modificar Productos:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
                         case "fechacaducidad":
                             echo "Modificar Fecha Caducidad:";
                             echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
@@ -1113,6 +1120,14 @@
                         echo "</td>";
                         echo "<td>";
                         echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el NUMERO de TARJETA'></input>";
+                        echo "</td>";
+                        break;
+                    case ("productos"):
+                        echo "<td>";
+                        echo "<p><b>PRODUCTOS: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce las PRODUCTOS'></input>";
                         echo "</td>";
                         break;
                     case ("fechacaducidad"):

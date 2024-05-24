@@ -1,11 +1,11 @@
 {
     "productos": [
         {
-            "precio": "39.99",
-            "nombre": "Balon de la Champions",
-            "descripcion": "Balon Champions 2024 Talla 5"
+            "precio": "15",
+            "nombre": "Guantes Nike",
+            "descripcion": "Guantes Nike para Porteros (ADULTOS)"
         }
     ],
     "cliente": "GRZZZMAN",
-    "total": 39.99
+    "total": 15
 }
