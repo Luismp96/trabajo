@@ -1,7 +1,8 @@
 //CARGA INICIAL PREGUNTAS AL ABRIR VENTANA
 window.onload = function(){
+    //document.cookie = "carrito=0;";
 
-    cargaNoticias();
+    cargaNoticias();  
 
 /*---------------------------------------------------------------------------------------------------------------------------*/
 /*                    JAVASCRIPT ASOCIADO AL MENU DE ACCIONES (PARA TODO USUARIO - GENERAL)                                  */
@@ -44,7 +45,8 @@ window.onload = function(){
 
                 if(datos.llave == 'si'){
                     document.getElementById('modal').style.display = "none";
-                    document.cookie = "usuario=" + nombre + ";";
+                    document.cookie = " usuario=" + nombre + ";";
+                    document.cookie = "carrito=0;";
                 }
 
                 cargaNoticias();
@@ -205,10 +207,10 @@ window.onload = function(){
     /* SI EN EL VALOR DE LA COOKIE USUARIO TENEMOS ALGUN VALOR GUARDADO
        - DESHABILITAMOS LOS BOTONES DE REGISTRO DE USUARIO Y DE CONSULTA (BOTON QUE AUN NO FUNCIONA)
     */
-    if (valorCookie("usuario") != "" && valorCookie("usuario") != undefined){
+    if (valorCookieUsuario() != "" && valorCookieUsuario() != undefined){
 
         document.getElementById('registro').style.display = "none";
-        document.getElementById('consulta').style.display = "none";
+        document.getElementById('consulta').style.display = "none";      
 
         //************* */
         //BOTON LOGOFF
@@ -270,9 +272,9 @@ window.onload = function(){
             boton.onclick = function(){
                 console.log("Creamos Nueva Noticia...");
 
-                console.log(valorCookie('usuario'));
+                console.log(valorCookieUsuario());
 
-                fetch("../../trabajo/API/obtenerid.php?usuario="+valorCookie('usuario'))
+                fetch("../../trabajo/API/obtenerid.php?usuario="+valorCookieUsuario())
 
                 .then(function(response){
                     return response.json()
@@ -316,220 +318,244 @@ window.onload = function(){
         boton1 =  document.getElementById("nuevojugador");
 
         boton1.onclick = function (){
-            let seccion = document.querySelector('section');
-            seccion.innerHTML = "";
 
-            let contenedor = document.createElement("div");
-            contenedor.classList.add("contenedorinterior1");
-            seccion.appendChild(contenedor);
-
-            //INPUT PARA EL NOMBRE DEL JUGADOR
-            let texto = document.createElement("p");
-            texto.innerHTML = "Introduce NOMBRE del jugador: ";
-            texto.setAttribute("class","textoformjugador");
-            contenedor.appendChild(texto);
-            let nombrejugador = document.createElement("input");
-            nombrejugador.setAttribute("type","text");
-            contenedor.appendChild(nombrejugador);
-
-            //SELECT PARA USUARIO
-            let texto1 = document.createElement("p");
-            texto1.innerHTML = "Introduce el NOMBRE del Usuario: ";
-            texto1.setAttribute("class","textoformjugador");
-            contenedor.appendChild(texto1);
-            let usuariojugador = document.createElement("select");
-            contenedor.appendChild(usuariojugador);
-
-            let opciondefecto = document.createElement("option");
-            opciondefecto.setAttribute("value","");
-            opciondefecto.innerHTML ="Selecciona un Usuario...";
-            usuariojugador.appendChild(opciondefecto);
-
-            fetch("../../trabajo/API/allusuarios.php")
+            fetch("../../trabajo/API/equipousuario.php?usuario="+valorCookieUsuario())
 
             .then(function(response){
                 return response.json()
             })
             .then(function(datos){
 
+                console.log("Datos para buscar equipo del usuario..." );
                 console.log(datos);
 
-                for(let i=0;i<datos.length;i++){
-                    let opcionequipo = document.createElement("option");
-                    opcionequipo.setAttribute("value",datos[i].identificador);
-                    opcionequipo.innerHTML = datos[i].usuario;
-                    usuariojugador.appendChild(opcionequipo);
-                }
+                if(datos.length > 0){
+                    let seccion = document.querySelector('section');
+                    seccion.innerHTML = "";
+
+                    let contenedor = document.createElement("div");
+                    contenedor.classList.add("contenedorinterior1");
+                    seccion.appendChild(contenedor);
+
+                    let cabeceranuevojugador = document.createElement("p");
+                    cabeceranuevojugador.innerHTML = "FORMULARIO PARA AÑADIR JUGADOR";
+                    cabeceranuevojugador.style.color = "red";
+                    cabeceranuevojugador.style.fontSize = "30px";
+                    cabeceranuevojugador.style.fontWeight = "bold";
+
+                    contenedor.appendChild(cabeceranuevojugador);
+
+                    //INPUT PARA EL NOMBRE DEL JUGADOR
+                    let texto = document.createElement("p");
+                    texto.innerHTML = "Introduce NOMBRE del jugador: ";
+                    texto.setAttribute("class","textoformjugador");
+                    contenedor.appendChild(texto);
+                    let nombrejugador = document.createElement("input");
+                    nombrejugador.setAttribute("type","text");
+                    contenedor.appendChild(nombrejugador);
+
+                    //SELECT PARA USUARIO
+                    let texto1 = document.createElement("p");
+                    texto1.innerHTML = "Introduce el NOMBRE del Usuario: ";
+                    texto1.setAttribute("class","textoformjugador");
+                    contenedor.appendChild(texto1);
+                    let usuariojugador = document.createElement("select");
+                    contenedor.appendChild(usuariojugador);
+
+                    let opciondefecto = document.createElement("option");
+                    opciondefecto.setAttribute("value","");
+                    opciondefecto.innerHTML ="Selecciona un Usuario...";
+                    usuariojugador.appendChild(opciondefecto);
+
+                    fetch("../../trabajo/API/allusuarios.php")
+
+                    .then(function(response){
+                        return response.json()
+                    })
+                    .then(function(datos){
+
+                        console.log(datos);
+
+                        for(let i=0;i<datos.length;i++){
+                            let opcionequipo = document.createElement("option");
+                            opcionequipo.setAttribute("value",datos[i].identificador);
+                            opcionequipo.innerHTML = datos[i].usuario;
+                            usuariojugador.appendChild(opcionequipo);
+                        }
                     
-            })
+                    })
 
-            //SELECT PARA EQUIPO
-            let texto2 = document.createElement("p");
-            texto2.innerHTML = "EQUIPO al que pertenece: ";
-            texto2.setAttribute("class","textoformjugador");
-            contenedor.appendChild(texto2);
-            let equipojugador = document.createElement("select");
-            contenedor.appendChild(equipojugador);
-
-            let equipo = document.createElement("option");
-            
-            fetch("../../trabajo/API/equipousuario.php?usuario="+valorCookie('usuario'))
-
-            .then(function(response){
-                return response.json()
-            })
-            .then(function(datos){
-
-                if (datos[0].nombreequipo != ""){
-                    console.log(datos[0].nombreequipo);
-                
-                    equipo.setAttribute("value",datos[0].idequipo);
-                    equipojugador.appendChild(equipo);
-
+                    //SELECT PARA EQUIPO
                     let texto2 = document.createElement("p");
-                    texto2.innerHTML = datos[0].nombreequipo;
-                    equipo.appendChild(texto2);
-                }else{
-                    equipo.setAttribute("value","");
-                    equipojugador.appendChild(equipo);
-                }
+                    texto2.innerHTML = "EQUIPO al que pertenece: ";
+                    texto2.setAttribute("class","textoformjugador");
+                    contenedor.appendChild(texto2);
+                    let equipojugador = document.createElement("select");
+                    contenedor.appendChild(equipojugador);
 
-                equipojugador.disabled=true;
+                    let equipo = document.createElement("option");
+            
+                    fetch("../../trabajo/API/equipousuario.php?usuario="+valorCookieUsuario())
+
+                    .then(function(response){
+                        return response.json()
+                    })
+                    .then(function(datos){
+
+                        if (datos[0].nombreequipo != ""){
+                            console.log(datos[0].nombreequipo);
+                
+                            equipo.setAttribute("value",datos[0].idequipo);
+                            equipojugador.appendChild(equipo);
+
+                            let texto2 = document.createElement("p");
+                            texto2.innerHTML = datos[0].nombreequipo;
+                            equipo.appendChild(texto2);
+                        }else{
+                            equipo.setAttribute("value","");
+                            equipojugador.appendChild(equipo);
+                        }
+
+                        equipojugador.disabled=true;
                     
-            })
+                    })
 
-            //INPUT PARA LA EDAD DEL JUGADOR
-            let texto3 = document.createElement("p");
-            texto3.innerHTML = "Introduce la EDAD del jugador: ";
-            texto3.setAttribute("class","textoformjugador");
-            contenedor.appendChild(texto3);
-            let edadjugador = document.createElement("input");
-            edadjugador.setAttribute("type","text");
-            contenedor.appendChild(edadjugador);
+                    //INPUT PARA LA EDAD DEL JUGADOR
+                    let texto3 = document.createElement("p");
+                    texto3.innerHTML = "Introduce la EDAD del jugador: ";
+                    texto3.setAttribute("class","textoformjugador");
+                    contenedor.appendChild(texto3);
+                    let edadjugador = document.createElement("input");
+                    edadjugador.setAttribute("type","text");
+                    contenedor.appendChild(edadjugador);
 
-            //SELECT PARA POSICION
-            let texto6 = document.createElement("p");
-            texto6.innerHTML = "Introduce la POSICION del Jugador: ";
-            texto6.setAttribute("class","textoformjugador");
-            contenedor.appendChild(texto6);
-            let posicionjugador = document.createElement("select");
-            contenedor.appendChild(posicionjugador);
+                    //SELECT PARA POSICION
+                    let texto6 = document.createElement("p");
+                    texto6.innerHTML = "Introduce la POSICION del Jugador: ";
+                    texto6.setAttribute("class","textoformjugador");
+                    contenedor.appendChild(texto6);
+                    let posicionjugador = document.createElement("select");
+                    contenedor.appendChild(posicionjugador);
 
-            let opciondefecto1 = document.createElement("option");
-            opciondefecto1.setAttribute("value","");
-            opciondefecto1.innerHTML ="Selecciona una Posicion...";
-            posicionjugador.appendChild(opciondefecto1);
+                    let opciondefecto1 = document.createElement("option");
+                    opciondefecto1.setAttribute("value","");
+                    opciondefecto1.innerHTML ="Selecciona una Posicion...";
+                    posicionjugador.appendChild(opciondefecto1);
 
-            fetch("../../trabajo/API/allposiciones.php")
+                    fetch("../../trabajo/API/allposiciones.php")
 
-            .then(function(response){
-                return response.json()
-            })
-            .then(function(datos){
+                    .then(function(response){
+                        return response.json()
+                    })
+                    .then(function(datos){
 
-                console.log(datos);
+                        console.log(datos);
 
-                for(let i=0;i<datos.length;i++){
-                    let opcionposicion = document.createElement("option");
-                    opcionposicion.setAttribute("value",datos[i].identificador);
-                    opcionposicion.innerHTML = datos[i].nombre;
-                    posicionjugador.appendChild(opcionposicion);
-                }
+                        for(let i=0;i<datos.length;i++){
+                            let opcionposicion = document.createElement("option");
+                            opcionposicion.setAttribute("value",datos[i].identificador);
+                            opcionposicion.innerHTML = datos[i].nombre;
+                            posicionjugador.appendChild(opcionposicion);
+                        }
                     
-            })
+                    })
 
-            //INPUT PARA EL DORSAL DEL JUGADOR
-            let texto4 = document.createElement("p");
-            texto4.innerHTML = "Introduce el DORSAL del jugador: ";
-            texto4.setAttribute("class","textoformjugador");
-            contenedor.appendChild(texto4);
-            let dorsaljugador = document.createElement("input");
-            dorsaljugador.setAttribute("type","text");
-            contenedor.appendChild(dorsaljugador);
+                    //INPUT PARA EL DORSAL DEL JUGADOR
+                    let texto4 = document.createElement("p");
+                    texto4.innerHTML = "Introduce el DORSAL del jugador: ";
+                    texto4.setAttribute("class","textoformjugador");
+                    contenedor.appendChild(texto4);
+                    let dorsaljugador = document.createElement("input");
+                    dorsaljugador.setAttribute("type","text");
+                    contenedor.appendChild(dorsaljugador);
 
-            //INPUT PARA LA FECHA DE NACIMIENTO
-            let texto5 = document.createElement("p");
-            texto5.innerHTML = "Introduce FECHA DE NACIMIENTO: ";
-            texto5.setAttribute("class","textoformjugador");
-            contenedor.appendChild(texto5);
-            let fechanacimiento = document.createElement("input");
-            fechanacimiento.setAttribute("type","date");
-            contenedor.appendChild(fechanacimiento);
+                    //INPUT PARA LA FECHA DE NACIMIENTO
+                    let texto5 = document.createElement("p");
+                    texto5.innerHTML = "Introduce FECHA DE NACIMIENTO: ";
+                    texto5.setAttribute("class","textoformjugador");
+                    contenedor.appendChild(texto5);
+                    let fechanacimiento = document.createElement("input");
+                    fechanacimiento.setAttribute("type","date");
+                    contenedor.appendChild(fechanacimiento);
 
-            let boton = document.createElement("button");
-            boton.setAttribute("value","enviar");
-            boton.classList.add("botonenviarjugador");
-            boton.innerHTML = "Enviar";
-            contenedor.appendChild(boton);
+                    let boton = document.createElement("button");
+                    boton.setAttribute("value","enviar");
+                    boton.classList.add("botonenviarjugador");
+                    boton.innerHTML = "Enviar";
+                    contenedor.appendChild(boton);
 
-            boton.onclick = function(){
-                console.log("Creamos Nuevo Jugador...");
+                    boton.onclick = function(){
+                        console.log("Creamos Nuevo Jugador...");
 
-                //VALIDAMOS QUE NO EXISTA
-                var existe = false;
-
-                var nombrein = nombrejugador.value;
-                var nombreinminus = nombrein.toLowerCase();
-
-                console.log(nombreinminus);
-
-                fetch("../../trabajo/API/alljugadores.php")
-
-                .then(function(response){
-                    return response.json()
-                })
-                .then(function(datos){
-
-                    console.log(datos);
-
-                    for(let i=0;i<datos.length;i++){
-
-                        var nombrerecogido = datos[i].nombre;
-                        var nombrerecogidominus = nombrerecogido.toLowerCase();
+                        //VALIDAMOS QUE NO EXISTA
+                        var existe = false;
+                        var nombrein = nombrejugador.value;
+                        var nombreinminus = nombrein.toLowerCase();
 
                         console.log(nombreinminus);
-                        console.log(nombrerecogidominus);
 
-                        if(nombrerecogidominus == nombreinminus){
-                            console.log("Encontramos Jugador con mismo nombre.");
-                            existe = true;
-                        }
-                    }
+                        fetch("../../trabajo/API/alljugadores.php")
 
-                    console.log(existe);
-
-                    if(existe){
-
-                        console.log("Entramos IF");
-                        //INPUT PARA EL NOMBRE DEL JUGADOR
-
-                        if (document.getElementById("mensajeerror") != null){
-                            console.log("Error se repite");
-                        }else{
-                            let texto = document.createElement("p");
-                            texto.setAttribute("id","mensajeerror");
-                            texto.innerHTML = "Ya existe un jugador con ese nombre.";
-                            texto.style.color="red";
-                            contenedor.appendChild(texto);
-                        }
-
-                    }else{
-                        console.log("Entramos ELSE");
-                        fetch("../../trabajo/API/insertarjugador.php?nombre="+nombrejugador.value+"&idusuario="+usuariojugador.value+"&idequipo="+equipojugador.value+"&edad="
-                        +edadjugador.value+"&idposicion="+posicionjugador.value+"&dorsal="+dorsaljugador.value+"&fechanacimiento="+fechanacimiento.value)
-    
-                        .then(function(datos){
-                            console.log(datos);
-                            cargaNoticias();
-                            //window.location = window.location;
-                        //   
+                        .then(function(response){
+                            return response.json()
                         })
+                        .then(function(datos){
+
+                            console.log(datos);
+
+                            for(let i=0;i<datos.length;i++){
+
+                                var nombrerecogido = datos[i].nombre;
+                                var nombrerecogidominus = nombrerecogido.toLowerCase();
+
+                                console.log(nombreinminus);
+                                console.log(nombrerecogidominus);
+
+                                if(nombrerecogidominus == nombreinminus){
+                                    console.log("Encontramos Jugador con mismo nombre.");
+                                    existe = true;
+                                }
+                            }
+
+                            console.log(existe);
+
+                            if(existe){
+
+                                console.log("Entramos IF");
+                                //INPUT PARA EL NOMBRE DEL JUGADOR
+
+                                if (document.getElementById("mensajeerror") != null){
+                                    console.log("Error se repite");
+                                }else{
+                                    let texto = document.createElement("p");
+                                    texto.setAttribute("id","mensajeerror");
+                                    texto.innerHTML = "Ya existe un jugador con ese nombre.";
+                                    texto.style.color="red";
+                                    contenedor.appendChild(texto);
+                                }
+
+                            }else{
+                                console.log("Entramos ELSE");
+
+                                fetch("../../trabajo/API/insertarjugador.php?nombre="+nombrejugador.value+"&idusuario="+usuariojugador.value+"&idequipo="+equipojugador.value+"&edad="
+                                +edadjugador.value+"&idposicion="+posicionjugador.value+"&dorsal="+dorsaljugador.value+"&fechanacimiento="+fechanacimiento.value)
+    
+                                .then(function(datos){
+                                    console.log(datos);
+                                    cargaNoticias();
+                                    //window.location = window.location;
+                                    //   
+                                })
+                            }
+
+                        })                
                     }
+                    
+                }else{
+                    alert("Usuario sin equipo. No puede añadir Jugador.")
+                }
 
-                })
-
-                
-            }
+            })
             
         }
 
@@ -544,71 +570,98 @@ window.onload = function(){
 
         botoneliminar.onclick = function(){
 
-            let seccion = document.querySelector('section');
-            seccion.innerHTML = "";
-
-            let contenedor = document.createElement("div");
-            contenedor.classList.add("contenedorinterior");
-
-            let texto1 = document.createElement("p");
-            texto1.innerHTML = "Selecciona Jugador a ELIMINAR: ";
-            texto1.setAttribute("class","textoformjugador");
-            contenedor.appendChild(texto1);
-
-            //SELECT PARA JUGADOR
-            let jugador = document.createElement("select");
-            contenedor.appendChild(jugador);
-
-            fetch("../../trabajo/API/equipousuario.php?usuario="+valorCookie('usuario'))
+            fetch("../../trabajo/API/equipousuario.php?usuario="+valorCookieUsuario())
 
             .then(function(response){
                 return response.json()
             })
             .then(function(datos){
 
-                let idequipousuario = datos[0].idequipo;
+                console.log("Datos para buscar equipo del usuario..." );
+                console.log(datos);
 
-                fetch("../../trabajo/API/alljugadores.php")
-                .then(function(response){
-                    return response.json()
-                })
-                .then(function(datos){
-                    console.log(datos);
+                if(datos.length > 0){
+                    let seccion = document.querySelector('section');
+                    seccion.innerHTML = "";
+        
+                    let contenedor = document.createElement("div");
+                    contenedor.classList.add("contenedorinterior");
+
+                    let cabeceraeliminarjugador = document.createElement("p");
+                    cabeceraeliminarjugador.innerHTML = "FORMULARIO PARA ELIMINAR JUGADOR";
+                    cabeceraeliminarjugador.style.color = "red";
+                    cabeceraeliminarjugador.style.fontSize = "30px";
+                    cabeceraeliminarjugador.style.fontWeight = "bold";
+
+                    contenedor.appendChild(cabeceraeliminarjugador);
+        
+                    let texto1 = document.createElement("p");
+                    texto1.innerHTML = "Selecciona Jugador a ELIMINAR: ";
+                    texto1.setAttribute("class","textoformjugador");
+                    contenedor.appendChild(texto1);
+        
+                    //SELECT PARA JUGADOR
+                    let jugador = document.createElement("select");
+                    contenedor.appendChild(jugador);
+        
+                    fetch("../../trabajo/API/equipousuario.php?usuario="+valorCookieUsuario())
+        
+                    .then(function(response){
+                        return response.json()
+                    })
+                    .then(function(datos){
+        
+                        let idequipousuario = datos[0].idequipo;
+        
+                        fetch("../../trabajo/API/alljugadores.php")
+                        .then(function(response){
+                            return response.json()
+                        })
+                        .then(function(datos){
+                            console.log(datos);
+        
+        
+                            for(let i=0;i<datos.length;i++){
+        
+                                if(idequipousuario == datos[i].id_equipo){
+                                    let opcion = document.createElement("option");
+                                    opcion.setAttribute("value",datos[i].identificador);
+                                    opcion.innerHTML = datos[i].nombre;
+                                    jugador.appendChild(opcion);
+                                }
+                            }            
+                        })
+                    })
+        
+                    contenedor.appendChild(jugador);
+        
+                    let boton = document.createElement("button");
+                    boton.setAttribute("value","enviar");
+                    boton.innerHTML = "Enviar";
+        
+                    contenedor.appendChild(boton);
+                    seccion.appendChild(contenedor);
+        
+                    boton.onclick = function(){
+                    console.log("Eliminamos Jugador...");
+        
+                    console.log(jugador.value);
+        
+                        fetch("../../trabajo/API/eliminarjugador.php?id="+jugador.value)
+        
+                        .then(function(datos){
+                            console.log("Se elimina correctamente el Jugador.")
+                        })
+                        cargaNoticias();
+                    }
+
+                }else{
+                    alert("Usuario sin equipo. No puede eliminar Jugador.");
+                    cargarNoticias();
+                }
 
 
-                    for(let i=0;i<datos.length;i++){
-
-                        if(idequipousuario == datos[i].id_equipo){
-                            let opcion = document.createElement("option");
-                            opcion.setAttribute("value",datos[i].identificador);
-                            opcion.innerHTML = datos[i].nombre;
-                            jugador.appendChild(opcion);
-                        }
-                    }            
-                })
-            })
-
-            contenedor.appendChild(jugador);
-
-            let boton = document.createElement("button");
-            boton.setAttribute("value","enviar");
-            boton.innerHTML = "Enviar";
-
-            contenedor.appendChild(boton);
-            seccion.appendChild(contenedor);
-
-            boton.onclick = function(){
-            console.log("Eliminamos Jugador...");
-
-            console.log(jugador.value);
-
-                fetch("../../trabajo/API/eliminarjugador.php?id="+jugador.value)
-
-                .then(function(datos){
-                    console.log("Se elimina correctamente el Jugador.")
-                })
-                cargaNoticias();
-            }
+            })    
 
         }
 
@@ -818,7 +871,6 @@ window.onload = function(){
                                     var puesto = posicion;
                                 }
 
-                                
                             }
 
                             p.innerHTML=puesto;
@@ -871,7 +923,120 @@ window.onload = function(){
 
         }
 
-        //PARTE NAV PARA CONTACTO
+        //BOTON PLANTILLA
+
+        let botonplantilla = document.getElementById("miequipo");
+        botonplantilla.onclick = null;
+        botonplantilla.setAttribute("id","miequipo");
+        botonplantilla =  document.getElementById("miequipo");
+
+        botonplantilla.onclick = function(){
+            
+            fetch("../../trabajo/API/equipousuario.php?usuario="+valorCookieUsuario())
+
+            .then(function(response){
+                return response.json()
+            })
+            .then(function(datos){
+
+                console.log("Entramos en plantilla...");
+
+                document.querySelector("aside").style.display = "none";
+
+                let seccion = document.querySelector('section');
+                seccion.innerHTML = "";
+
+                console.log("Datos para buscar equipo del usuario..." );
+                console.log(datos);
+
+                if(datos.length > 0){
+
+                    let nombreequipo = datos[0].nombreequipo;
+
+                    let cabeceraplantilla = document.createElement("p");
+                    cabeceraplantilla.innerHTML = "PLANTILLA EQUIPO - " + nombreequipo;
+                    cabeceraplantilla.style.color = "red";
+                    cabeceraplantilla.style.fontSize = "30px";
+                    cabeceraplantilla.style.fontWeight = "bold";
+
+                    seccion.appendChild(cabeceraplantilla);
+
+                    let idequipousuario = datos[0].idequipo;
+
+                    fetch("../../trabajo/API/alljugadores.php")
+
+                    .then(function(response){
+                        return response.json()
+                    })
+                    .then(function(datos){
+
+                        console.log(datos);
+
+                        for(let i=0;i<datos.length;i++){
+
+                            if (datos[i].id_equipo == idequipousuario){
+
+                                console.log("Encontramos el equipo del usuario");
+
+
+                                let plantilla = document.getElementById('plantillajugadores');
+
+                                let importado1 = document.importNode(plantilla.content,true);
+
+                                importado1.querySelector('article').setAttribute('name',datos[i].identificador);
+                                importado1.querySelector('h3').textContent = datos[i].nombre;
+
+                                let p2 = document.createElement('p');
+                                p2.innerHTML=datos[i].edad;
+                                p2.style.color="white";
+
+                                importado1.getElementById('edadjugador').appendChild(p2);
+                                importado1.getElementById('edadjugador').style.color="orange";
+
+                                let p4 = document.createElement('p');
+
+                                console.log(datos[i].id_posicion);
+
+                                fetch("../../trabajo/API/posicionjugador.php?id="+datos[i].id_posicion)
+                                .then(function(response){
+                                    return response.json()
+                                })
+
+        
+                                .then(function(datos){
+                                    console.log(datos);
+                                    p4.innerHTML=datos.posicion;
+                                    p4.style.color="white";
+                                })
+            
+                                importado1.getElementById('posicionjugador').appendChild(p4);
+                                importado1.getElementById('posicionjugador').style.color="orange";
+
+                                let p1 = document.createElement('p');
+                                p1.innerHTML=datos[i].dorsal;
+                                p1.style.color="white";
+
+                                importado1.getElementById('dorsaljugador').appendChild(p1);
+                                importado1.getElementById('dorsaljugador').style.color="orange";
+
+                                seccion.appendChild(importado1);
+                            }
+                        }
+
+                    })
+
+                }else{
+                    console.log("Usuario sin equipo...........");
+                    cargaNoticias();
+                    alert("Usuario sin equipo! Necesita ser dado de alta en alguno.");
+                    
+                }
+
+            })
+
+            
+        }
+
         var temporizador;
 
         //********************/
@@ -896,7 +1061,8 @@ window.onload = function(){
 
             let titulo = document.createElement("p");
             titulo.innerHTML = "CHAT GENERAL";
-            titulo.style.color = "brown";
+            titulo.style.color = "red";
+            titulo.style.fontWeight = "bold";
             titulo.style.fontSize = "40px";
             seccion.appendChild(titulo);
 
@@ -937,7 +1103,7 @@ window.onload = function(){
                 console.log("El mensaje que voy a mandar es: " + document.getElementById("mensaje").value);
 
                 if (inputmensaje.value != ""){
-                    fetch("../../trabajo/API/enviamensaje.php?usuario="+valorCookie("usuario")+"&mensaje=" + inputmensaje.value);
+                    fetch("../../trabajo/API/enviamensaje.php?usuario="+valorCookieUsuario()+"&mensaje=" + inputmensaje.value);
                     inputmensaje.value = "";
                 }
                 
@@ -946,6 +1112,16 @@ window.onload = function(){
 
         }
 
+        //BOTON VER CARRITO
+
+        let botonvercarrito = document.getElementById("carrito");
+        botonvercarrito.style.display="block";
+
+        nav.appendChild(botonvercarrito);
+
+        botonvercarrito.onclick = function(){
+            mostrarCarritoUsuario(valorCookieUsuario());
+        }
 
     }else{
         document.getElementById('anadirJugador').style.display = "none";
@@ -958,7 +1134,9 @@ window.onload = function(){
         document.getElementById('chatgeneral').style.display = "none";
         document.getElementById('cabeceramiequipo').style.display = "none";
         document.getElementById('cabecerachats').style.display = "none";
+        document.getElementById('carrito').style.display = "none";
         document.getElementById('miequipo').style.display = "none";
+        document.getElementById('contenedorcarrito').style.display = "none";
         console.log("El usuario no existe.");
     }
 
@@ -1008,8 +1186,6 @@ window.onload = function(){
 
 }
 
-
-
 //CHAT
 
 var temporizador;
@@ -1030,10 +1206,10 @@ function bucle(){
     
             console.log(datos);
             
-            cadena = "";
+            cadena1 = "";
     
             for(let i=0;i<datos.length;i++){
-                cadena += `
+                cadena1 += `
                 <div class="mensaje">
                     <div class="usuario">` + datos[i].usuario+ `</div>
                     <br>
@@ -1041,9 +1217,13 @@ function bucle(){
                     <div class="texto">`+ datos[i].mensaje+`</div>
                 </div>`
             }
-    
-            document.getElementById("contienemensajes").innerHTML = cadena;
-            document.getElementById("contienemensajes").scrollTop = 10000000;
+            
+
+            if (document.getElementById("contienemensajes") !=null){
+                document.getElementById("contienemensajes").innerHTML = cadena1;
+                document.getElementById("contienemensajes").scrollTop = 10000000;
+            }
+            
         })
 
     

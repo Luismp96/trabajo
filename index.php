@@ -13,12 +13,19 @@
         <link rel="stylesheet" href="./css/estilos.css">
     </head>
     <body>
-        <form action="login.php" method="POST">
-            <img src="./img/logo1.jpg" style="width: 300px; height:200px">
-            <input type="text" name="usuario" placeholder="Usuario: ">
-            <input type="password" name="contrasena" placeholder="Contraseña: ">
-            <input type="submit">
-        </form>
+        <header>
+
+
+        </header>
+        <main>
+            <form action="login.php" method="POST">
+                <img src="./img/logo1.jpg" style="width: 300px; height:200px">
+                <input type="text" name="usuario" placeholder="Usuario: ">
+                <input type="password" name="contrasena" placeholder="Contraseña: ">
+                <input type="submit">
+            </form>
+        </main>
+        
     </body>
 
 

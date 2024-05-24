@@ -37,6 +37,9 @@
                     case ("identificador"):
                         echo "<th>IDENTIFICADOR</th>";
                         break;
+                    case ("fechaconsulta"):
+                        echo "<th>FECHA CONSULTA</th>";
+                        break;
                     case ("id_usuario"):
                         echo "<th>USUARIO</th>";
                         break;
@@ -168,6 +171,30 @@
                         break;
                     case ("numerojornada"):
                         echo "<th>JORNADA</th>";
+                        break;
+                    case ("nombreusuario"):
+                        echo "<th>NOMBRE USUARIO</th>";
+                        break;
+                    case ("direccion"):
+                        echo "<th>DIRECCION</th>";
+                        break;
+                    case ("codpostal"):
+                        echo "<th>COD. POSTAL</th>";
+                        break;
+                    case ("numerotarjeta"):
+                        echo "<th>TAJETA</th>";
+                        break;
+                    case ("cvv"):
+                        echo "<th>CVV</th>";
+                        break;
+                    case ("fechacaducidad"):
+                        echo "<th>FECHA CADUCIDAD</th>";
+                        break;
+                    case ("precio"):
+                        echo "<th>PRECIO</th>";
+                        break;
+                    case ("imagen"):
+                        echo "<th>IMAGEN</th>";
                         break;
                     default:
                         echo "<th>" .$fila['Field']."</th>";
@@ -670,6 +697,28 @@
 
                         echo "</select>";
                     }
+
+                    if(explode("_",$columna)[1] == "posicion"){
+
+                        echo "Modificar Posicion:";
+
+                        $peticion1 = "SELECT * FROM posiciones WHERE identificador = ".$campo.";";
+                        $resultado1= mysqli_query($conexion,$peticion1);
+                        $fila1 = mysqli_fetch_assoc($resultado1);
+
+                        echo "<select name='".$columna."' value='".$fila1['nombre']."'>
+                        <option>".$fila1['nombre']."</option>
+                        ";
+
+                        $peticion2 = "SELECT * FROM posiciones;";
+                        $resultado2 = mysqli_query($conexion,$peticion2);
+
+                        while($fila2 = mysqli_fetch_assoc($resultado2)){
+                        echo "<option value='".$fila2['nombre']."'>".$fila2['nombre']."</option>";
+                        }
+
+                        echo "</select>";
+                    }
                     
                 
                 }else{
@@ -680,6 +729,10 @@
                             break;
                         case "apellidos":
                             echo "Modificar Apellidos:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "fechaconsulta":
+                            echo "Modificar Fecha Consulta:";
                             echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
                             break;
                         case "email":
@@ -800,6 +853,38 @@
                             break;
                         case "puntuacion":
                             echo "Modificar Puntuacion:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "nombreusuario":
+                            echo "Modificar Nombre Usuario:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "direccion":
+                            echo "Modificar Direccion:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "codpostal":
+                            echo "Modificar Codigo Postal:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "numerotarjeta":
+                            echo "Modificar Numero Tarjeta:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "fechacaducidad":
+                            echo "Modificar Fecha Caducidad:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "cvv":
+                            echo "Modificar CVV:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "precio":
+                            echo "Modificar Precio:";
+                            echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
+                            break;
+                        case "imagen":
+                            echo "Modificar Imagen:";
                             echo "<input type='text' name='".$columna."' value='".$campo."'></input>";
                             break;
                         case "identificador":
@@ -990,30 +1075,142 @@
                         echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce la EDAD'></input>";
                         echo "</td>";
                         break;
-                        case ("usuario"):
-                            echo "<td>";
-                            echo "<p><b>USUARIO: </b></p>";
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el NOMBRE DE USUARIO'></input>";
-                            echo "</td>";
-                            break;
+                    case ("precio"):
+                        echo "<td>";
+                        echo "<p><b>PRECIO: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el PRECIO'></input>";
+                        echo "</td>";
+                        break;
+                    case ("nombreusuario"):
+                        echo "<td>";
+                        echo "<p><b>NOMBRE DEL USUARIO: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el NOMBRE DEL USUARIO'></input>";
+                        echo "</td>";
+                        break;
+                    case ("direccion"):
+                        echo "<td>";
+                        echo "<p><b>DIRECCION: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce la DIRECCION del envío'></input>";
+                        echo "</td>";
+                        break;
+                    case ("codpostal"):
+                        echo "<td>";
+                        echo "<p><b>CODIGO POSTAL: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el CODIGO POSTAL'></input>";
+                        echo "</td>";
+                        break;
+                    case ("numerotarjeta"):
+                        echo "<td>";
+                        echo "<p><b>NUM. TARJETA: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el NUMERO de TARJETA'></input>";
+                        echo "</td>";
+                        break;
+                    case ("fechacaducidad"):
+                        echo "<td>";
+                        echo "<p><b>FECHA DE CADUCIDAD: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce la FECHA CADUCIDAD'></input>";
+                        echo "</td>";
+                        break;
+                    case ("cvv"):
+                        echo "<td>";
+                        echo "<p><b>CVV: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el CVV de la TARJETA'></input>";
+                        echo "</td>";
+                        break;
+                    case ("epoch"):
+                        echo "<td>";
+                        echo "<p><b>EPOCH: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce EPOCH'></input>";
+                        echo "</td>";
+                        break;
+                    case ("ip"):
+                        echo "<td>";
+                        echo "<p><b>IP: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce IP'></input>";
+                        echo "</td>";
+                        break;
+                    case ("navegador"):
+                        echo "<td>";
+                        echo "<p><b>NAVEGADOR: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce NAVEGADOR'></input>";
+                        echo "</td>";
+                        break;
+                    case ("sesion"):
+                        echo "<td>";
+                        echo "<p><b>SESION: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce SESION'></input>";
+                        echo "</td>";
+                        break;
+                    case ("request"):
+                        echo "<td>";
+                        echo "<p><b>REQUEST: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce REQUEST'></input>";
+                        echo "</td>";
+                        break;
+                    case ("fechaconsulta"):
+                        echo "<td>";
+                        echo "<p><b>FECHA CONSULTA: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce FECHA CONSULTA'></input>";
+                        echo "</td>";
+                        break;
+                    case ("imagen"):
+                        echo "<td>";
+                        echo "<p><b>URL IMAGEN: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce la URL de la IMAGEN'></input>";
+                        echo "</td>";
+                        break;
+                    case ("usuario"):
+                        echo "<td>";
+                        echo "<p><b>USUARIO: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el NOMBRE DE USUARIO'></input>";
+                        echo "</td>";
+                        break;
                     case ("contrasena"):
-                            echo "<td>";
-                            echo "<p><b>CONTRASEÑA: </b></p>";
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce la CONTRASEÑA'></input>";
-                            echo "</td>";
-                            break;
+                        echo "<td>";
+                        echo "<p><b>CONTRASEÑA: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce la CONTRASEÑA'></input>";
+                        echo "</td>";
+                        break;
                     case ("numeroequipos"):
-                            echo "<td>";
-                            echo "<p><b>NUMERO DE EQUIPOS: </b></p>";
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el Nº DE EQUIPOS'></input>";
-                            echo "</td>";
-                            break;
+                        echo "<td>";
+                        echo "<p><b>NUMERO DE EQUIPOS: </b></p>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo "<input type='text' name='".$fila['Field']."' placeholder='Introduce el Nº DE EQUIPOS'></input>";
+                        echo "</td>";
+                        break;
                     case ("nombre"):
                         echo "<td>";
                         echo "<p><b>NOMBRE: </b></p>";
