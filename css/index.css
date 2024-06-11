@@ -1,730 +1,1018 @@
 
 
+*{
+    margin: 0px;
+    padding: 0px;
+    
+}
+body,html{
+    background:black;
+    font-family: sans-serif;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+}
+
+/******************/
+/* ESTILO HEADER
+/******************/
+header{
+    width: 100%;
+    border-bottom:var(--gris);
+    background: linear-gradient(blue, black);
+    padding-top: 50px;
+    text-align: center;
+}
+header table{
+    width: 100%;
+}
+
+header h1{
+    width: 20%;
+}
+header button{
+  
+    margin:5px;
+}
+header input{
+    padding: 5px;
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+header .contenedor2 ul {
+    list-style-type: none; 
+    margin: 0; 
+    display: flex; 
+    justify-content: center;
+}
+header .contenedor2 ul li {
+    margin: 0 
+}
+
+
+
+header .contenedor h1{
+
+    color:white;
+    text-align: center;
+    padding-top: 10px;
+}
+
+header .contenedor #iniciarsesion, .contenedor #registro, header .contenedor #consulta{
+    width: 15%;
+    height: 40px;
+    background-color: rgba(46, 183, 138, 1);
+    border-radius: 5px;
+    font-weight: bold;
+    
+}
+
+
+header .contenedor ul{
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.equiposseleccionados{
+    color: red;
+}
+
+.descripcionequipo{
+    display: flex; 
+    justify-content: space-around; 
+}
+
+.contenedor3{
+    text-align: center;
+
+}
+
+/******************/
+/* ESTILO BOTONES MENU NAVEGACION
+/******************/
+#botonmenu1,#botonmenu2, #botonmenu3, #botonmenu4, #botonmenu5,#botonmenu6{
+    padding: 10px;;
+    
+}
+
+#botonmenu1 a, #botonmenu2 a, #botonmenu3 a, #botonmenu4 a, #botonmenu5 a, #botonmenu6 a{
+    text-decoration: none;
+    color:white;
+}
+
+.contenedor ul{
+    padding: 5px;
+    text-align: center;
+}
+
+/******************/
+/* ESTILO MAIN
+/******************/
+main{
+    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    background: black;
+}
+main .contenedor3{
+    height: 100vh;
+    width: 100%;
+    flex:1;
+    box-sizing: border-box;
+    
+}
+
+main nav{
+    width: 20%;
+    height: 100vh;
+    box-sizing: border-box;
+    border-right: 2px black solid;
+    float:left;
+    background: black;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+
+
+main aside{
+    width: 20%;
+    height: 100vh;
+    box-sizing: border-box;
+    border-left: 2px black solid;
+    background: black;
+    float:left;
+}
+
+/******************/
+/* ESTILO SECTION
+/******************/
+
+main section{
+    width: 60%;
+    height: 100vh;
+    box-sizing: border-box;
+    float:left;
+    background: black;
+    text-align: center;
+}
+
+section .cabeceraformregistro{
+    padding-top: 20px ;
+}
+
+section .botonvermiembros{
+    background-color: blue;
+    color: white;
+    height: 30px;
+    width: 150px;
+    margin-top: 10px;
+}
+
+section article {
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px white solid;
+    text-align: center;
+    background-color: black;
+    color:white;
+    margin: 5px;
+    border-radius: 5px;
+
+}
+
+section article *{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+/******************/
+/* ESTILO MODAL
+/******************/
+
+#modal{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+#contenedormodal{
+    width: 500px;
+    height: 300px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -300px;
+    background: wheat;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+    padding: 20px;
+    border: 2px white solid;
+    background: linear-gradient(blue, black);
+}
+
+#contenedormodal *{
+    width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+
+
+/******************/
+/* ESTILO CABECERAS
+/******************/
+.cabecera{
+    text-decoration: underline;
+    background: linear-gradient(blue, black);
+    font-size: 24px;
+    color: white;
+}
+
+.cabeceraposicion{
+    background: green;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+/******************/
+/* ESTILO SIN RESPUESTA
+/******************/
+.sinrespuesta{
+    background-color: brown;
+}
+
+/******************/
+/* ESTILO BOTON INICIAR SESION
+/******************/
+#enviainiciosesion{
+    background:  rgba(218, 138, 138, 1);
+}
+
+/******************/
+/* ESTILO TITULO NOTICIAS
+/******************/
+.titulonoticia{
+    color: rgba(235, 220, 16, 0.938);
+}
+
+
+/******************/
+/* ESTILO CLASE INSERT CORRECTO
+/******************/
+.insertcorrecto{
+    background-color: green;
+    color: black;
+    padding: 10px;
+    height: 50px;
+    border: 2px white solid;
+    font-weight: bold;
+    text-align: center;
+}
+
+/******************/
+/* ESTILO CLASE INSERT INCORRECTO
+/******************/
+.insertcorrecto p{
+    margin-top: 4px;
+}
+
+/******************/
+/* ESTILO CONTAINER
+/******************/
+.container{
+    width: 100%;
+}
+
+
+/******************/
+/* ESTILO BOTONES DE ACCION
+/******************/
+.botonnuevanoticia{
+    padding: 10px;
+    background: linear-gradient(yellow, black);
+    color:beige;
+    border:2px solid black;
+    border-radius: 5px;
+
+}
+
+.botonnuevojugador{
+    padding: 10px;
+    background: linear-gradient(blue, black);
+    color:beige;
+    border:2px solid beige;
+    border-radius: 5px;
+    width: 90%;
+  
+    
+}
+
+.botoneliminarjugador{
+    padding: 10px;
+    background: linear-gradient(blue, black);
+    color:beige;
+    border:2px solid beige;
+    border-radius: 5px;
+    width: 90%;
+    
+}
+
+.botonchatgeneral{
+    padding: 10px;
+    background: linear-gradient(blue, black);
+    color:beige;
+    border:2px solid beige;
+    border-radius: 5px;
+    width: 90%;
+  
+    margin-left: 18px;
+}
+
+.botonmiequipo{
+    padding: 10px;
+    background: linear-gradient(blue, black);
+    color:beige;
+    border:2px solid beige;
+    border-radius: 5px;
+    width: 90%;
+  
+    
+}
+
+.botoncarrito{
+    padding: 10px;
+    background: blue;
+    color:black;
+    border:2px solid black;
+    width: 90%;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+/******************/
+/* ESTILO CONTENEDOR 
+/******************/
+.contenedor .botonbuscarjugador{
+    padding: 10px;
+    background: linear-gradient(yellow, black);
+    color:beige;
+    border:2px solid black;
+    border-radius: 5px;
+   
+}
+
+.contenedor .botonbuscarequipo{
+    padding: 10px;
+    background:linear-gradient(yellow, black);
+    color:beige;
+    border:2px solid black;
+    border-radius: 5px;
+  
+}
+
+.contenedor .logoff{
+    padding: 10px;
+    background: red;
+    color:black;
+    border:2px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.contenedor #buscador{
+    padding: 0px;
+    background: beige;
+    color:black;
+    border:2px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 300px;
+}
+
+/******************/
+/* ESTILO FORMULARIO REGISTRO
+/******************/
+.formularioregistro{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    
+}
+.formularioregistro input{
+
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.formularioregistro button{
+    padding: 10px;
+    margin-top: 10px;
+    background-color: green;
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+/*FORMULARIO CONSULTA*/
+/*****************************/
+/* ESTILO FORMULARIO CONSULTA
+/*****************************/
+.formularioconsulta{
+    display:flex;
+    flex-direction: column;
+    align-items: center;  
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    
+}
+.formularioconsulta input{
+
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+}
+
+.formularioconsulta #resumen{
+
+    height: 250px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    resize: vertical; 
+}
+
+.formularioconsulta button{
+    padding: 10px;
+    margin-top: 10px;
+    background-color: green;
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.textoformnoticia{
+    color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.textoformjugador{
+    color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+
+/******************/
+/* ESTILO CONTENEDOR INTERIOR
+/******************/
+
+.contenedorinterior input, 
+.contenedorinterior textarea,
+.contenedorinterior select
+{
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.contenedorinterior{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.contenedorinterior button{
+    padding: 10px;
+    margin-top: 20px;
+    background-color: blue;
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/******************/
+/* ESTILO CONTENEDOR INTERIOR 1
+/******************/
+.contenedorinterior1{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.contenedorinterior1 input,
+.contenedorinterior1 textarea,
+.contenedorinterior1 select,
+
+.contenedorinterior1 .botonenviarjugador
+{
+    width: 50%;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-weight: bold;
+
+}
+
+.contenedorinterior1 button{
+    padding: 10px;
+    margin-top: 20px;
+    background-color: blue;
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+
+
+/******************/
+/* ESTILO CLASE JUGADOR
+/******************/
+.jugador {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    width: 100%;
+    height: 200px;
+}
+
+/******************/
+/* ESTILO CLASE JORNADAS
+/******************/
+
+.jornadas{
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center;
+    color:green;
+    padding: 0;
+}
+
+.jornadas #elocal{
+
+    padding: 5px;
+}
+.jornadas #evisitante{
+    padding: 5px;
+}
+
+.tablajornadas{
+    box-sizing: border-box;
+}
+.tablajornadas tr td{
+    border: 1px solid white;
+    width: 200px;
+}
+
+
+/*CHATS*/
+
+#chat{
+    height: 70%;
+}
+
+#chat .botonenviarmensaje{
+    background-color: rgba(73,181,116,100);
+    width: 20%;
+    height: 40px;
+    font-weight: bold;
+}
+
+#contienemensajes{
+
+    height: 80%;
+    background-color:black;
+    border: 1px solid white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    
+}
+
+.mensaje{
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+.mensajepropio{
+    color: black;
+    background-color: rgba(73,181,116,100);
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+#mensaje{
+    width: 70%;
+    background: beige;
+    padding: 10px;
+    margin:10px;
+    text-align: left;
+    border-radius: 0%,10%,10%,10%;
+}
+
+
+
+.texto{
+    padding: 10px;
+    font-size: 12px;
+}
+
+#listadousuarios{
+    height: 400px;
+    background-color: yellow;
+}
+
+
+/* GRID DE LA TIENDA */
+
+.gridtienda{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: black;
+    border: 3px solid black;
+
+}
+
+.card{
+    box-sizing: border-box;
+    width: 200px;
+    min-height: 500px;
+    margin: 10px;
+    
+}
+
+.card-body{
+    background-color: black;
+    
+}
+
+.card-body .card-title{
+    color:white;
+}
+
+.card-body .card-text{
+    color:white;
+}
+
+
+/* CARRITO */
+
+#textocabecera{
+    color:white;
+}
+#carrito{
+    padding: 10px;
+    background: rgba(0,0,83,1);
+    color:yellow;
+    border:2px solid black;
+    width: 90%;
+    font-weight: bold;
+    margin-left: 18px;
+}
+
+.card-carrito{
+    background: orange;
+    color:black;
+    border:2px solid black;
+    width: 90%;
+    font-weight: bold;
+    margin-left: 18px;
+    height: 70px;
+}
+
+.divtotal{
+    padding: 10px;
+    background: green;
+    color:black;
+    border:2px solid black;
+
+    width: 90%;
+    font-weight: bold;
+    margin-left: 18px;
+}
+
+.card-titulo-carrito{
+    text-align: center;
+    padding: 0;
+}
+
+.card-texto-carrito{
+    text-align: center;
+    padding: 0;
+}
+
+#precioindprocucto{
+    padding-bottom: 15px;
+    color: grey;
+}
+
+#divacciones table{
+    padding: 10px;
+    background: yellowgreen;
+    color:black;
+    border:2px solid black;
+    width: 90%;
+    font-weight: bold;
+    margin-left: 18px;
+}
+
+.botonborrarpedido{
+    background: red;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+}
+
+.botontramitarpedido{
+    background: blue;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+}
+
+
+/* ESTILO TARJETA PAGO */
+
+
+.contenedorinterior1 .tablatarjeta{
+    width: 500px;
+    padding: 0;
+    margin-left: 50px;
+    
+}
+
+.contenedorinterior1 .tablatarjeta .columna1tarjeta{
+    width: 25%;
+}
+
+.contenedorinterior1 .tablatarjeta .columna1tarjeta input{
+    width: 100%;
+}
+
+.contenedorinterior1 .tablatarjeta .columna2tarjeta{
+    width: 25%;
+}
+
+.contenedorinterior1 .tablatarjeta .columna2tarjeta input{
+    width: 100%;
+}
+
+.contenedorinterior1 .tablatarjeta .columna3tarjeta{
+    width: 25%;
+}
+
+.contenedorinterior1 .tablatarjeta .columna3tarjeta input{
+    width: 100%;
+}
+
+.contenedorinterior1 .tablatarjeta .columna4tarjeta{
+    width: 25%;
+}
+
+.contenedorinterior1 .tablatarjeta .columna4tarjeta input{
+    width: 100%;
+}
+
+.contenedorinterior1 .divpagotarjeta{
+    border: 2px solid white;
+    margin-top: 35px;
+    padding:20px;
+    width: 50%;
+}
+
+
+
+
+.contenedorinterior1 .tablatarjeta1{
+    width: 500px;
+    padding: 0;
+    margin: 0;
+}
+
+.contenedorinterior1 .tablatarjeta1 .columna11tarjeta{
+    width: 45%;
+}
+
+.contenedorinterior1 .tablatarjeta1 .columna11tarjeta input{
+    width: 45%;
+    margin-left: 55%;
+}
+
+.contenedorinterior1 .tablatarjeta1 .columna22tarjeta{
+    width: 35%;
+}
+
+.contenedorinterior1 .tablatarjeta1 .columna22tarjeta input{
+    width: 50%;
+    margin-right: 50%;
+}
+
+.contenedorinterior1 .tablatarjeta1 .columna33tarjeta{
+    width: 20%;
+}
+
+.contenedorinterior1 .tablatarjeta1 .columna33tarjeta input{
+    width: 90%;
+    
+}
+
+.contenedorinterior1 .campoincorrecto{
+    background-color:  red;
+}
+
+.contenedorinterior1 .campocorrecto{
+    background-color:  green;
+}
+
+
+
+/*TAMAÑO MOVIL */
+
+@media (max-width: 768px) {
+    
     *{
-        margin: 0px;
-        padding: 0px;
-        
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
     }
-    body,html{
-        background:black;
-        font-family: sans-serif;
-        height: 100%;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-    
+
+    h1{
+        margin-left: 40%;
     }
-    
-    /******************/
-    /* ESTILO HEADER
-    /******************/
-    header{
-        width: 100%;
-        border-bottom:var(--gris);
-        background: linear-gradient(blue, black);
-        padding-top: 50px;
-        text-align: center;
-    }
-    header table{
-        width: 100%;
-    }
-    
-    header h1{
-        width: 20%;
-    }
-    header button{
-      
-        margin:5px;
-    }
-    header input{
-        padding: 5px;
-        width: 120px;
-        margin-top: 10px;
-        margin-left: 0px;
-        margin-bottom: 10px;
-        margin-right: 5px;
-        border: 2px solid black;
-        border-radius: 5px;
-    }
-    
-    header .contenedor2 ul {
-        list-style-type: none; 
-        margin: 0; 
-        display: flex; 
-        justify-content: center;
-    }
-    header .contenedor2 ul li {
-        margin: 0 10px; 
-    }
-    
-    
-    
-    header .contenedor h1{
-    
-        color:white;
-        text-align: center;
-        padding-top: 10px;
-    }
-    
+
+
     header .contenedor #iniciarsesion, .contenedor #registro, header .contenedor #consulta{
-        width: 15%;
-        height: 40px;
+        
         background-color: rgba(46, 183, 138, 1);
         border-radius: 5px;
         font-weight: bold;
+        color:black;
+        border:2px solid black;
+        width: 450px;
         
+    }  
+
+    header .contenedor #buscador{
+        background-color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        color:black;
+        border:2px solid black;
+        width: 450px;
+        padding: 5px;
     }
-    
+
+    header .contenedor #logoff{
+        padding-left: 45%;
+    }
+
+    .contenedor .botonbuscarequipo{
+        padding-left: 40%;
+    }
+    .contenedor .botonbuscarjugador{
+        padding-left: 38%;
+    }
+
+    .contenedor .botonnuevanoticia{
+        padding-left: 40%;
+    }
+
+    header .contenedor #buscador{
+        margin:0;
+        width: 100%;
+    }
     
     header .contenedor ul{
+        margin:0;
         display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        text-decoration: none;
-        list-style: none;
-        text-align: center;
-        margin-left: 10%;
     }
-    
-    .equiposseleccionados{
-        color: red;
-    }
-    
-    .descripcionequipo{
-        display: flex; 
-        justify-content: space-around; 
-    }
-    
-    .contenedor3{
-        text-align: center;
-    
-    }
-    
-    /******************/
-    /* ESTILO BOTONES MENU NAVEGACION
-    /******************/
-    #botonmenu1,#botonmenu2, #botonmenu3, #botonmenu4, #botonmenu5,#botonmenu6{
-        padding: 10px;;
-        
-    }
-    
-    #botonmenu1 a, #botonmenu2 a, #botonmenu3 a, #botonmenu4 a, #botonmenu5 a, #botonmenu6 a{
-        text-decoration: none;
-        color:white;
-    }
-    
-    .contenedor ul{
-        padding: 5px;
+  
+    header button {
+        padding-left: 150px;
         text-align: center;
     }
-    
-    /******************/
-    /* ESTILO MAIN
-    /******************/
-    main{
-        height: 100vh;
-        width: 100%;
-        min-height: 100vh;
-        background: black;
-    }
-    main .contenedor3{
-        height: 100vh;
-        width: 100%;
-        flex:1;
-        box-sizing: border-box;
-        
-    }
-    
-    main nav{
-        width: 20%;
-        height: 100vh;
-        box-sizing: border-box;
-        border-right: 2px black solid;
-        float:left;
-        background: black;
-        margin-left: 100px;
-        margin-top: 50px;
-    }
-    
-    
-    
-    main aside{
-        width: 20%;
-        height: 100vh;
-        box-sizing: border-box;
-        border-left: 2px black solid;
-        background: black;
-        float:left;
-    }
-    
-    /******************/
-    /* ESTILO SECTION
-    /******************/
-    
-    main section{
-        width: 60%;
-        height: 100vh;
-        box-sizing: border-box;
-        float:left;
-        background: black;
-        text-align: center;
-    }
-    
-    section .cabeceraformregistro{
-        padding-top: 20px ;
-    }
-    
-    section .botonvermiembros{
-        background-color: blue;
-        color: white;
-        height: 30px;
-        width: 150px;
-        margin-top: 10px;
-    }
-    
-    section article {
-        box-sizing: border-box;
-        padding: 20px;
-        border: 1px white solid;
-        text-align: center;
-        background-color: black;
-        color:white;
-    }
-    
-    section article *{
-        margin-top:5px;
-        margin-bottom:5px;
-    }
-    
-    /******************/
-    /* ESTILO MODAL
-    /******************/
-    
-    #modal{
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        display: none;
-    }
-    
-    #contenedormodal{
-        width: 500px;
-        height: 300px;
-        box-sizing: border-box;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: -250px;
-        margin-top: -300px;
-        background: wheat;
-        border-radius: 5px;
-        box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
-        padding: 20px;
-        border: 2px white solid;
-        background: linear-gradient(blue, black);
-    }
-    
-    #contenedormodal *{
-        width: 100%;
-        padding: 0px;
-        box-sizing: border-box;
-        margin-top: 10px;
-        padding: 10px;
-        text-align: center;
-    }
-    
-    
-    
-    /******************/
-    /* ESTILO CABECERAS
-    /******************/
-    .cabecera{
-        text-decoration: underline;
-        background: linear-gradient(blue, black);
-        font-size: 24px;
-        color: white;
-    }
-    
-    .cabeceraposicion{
-        background: green;
-        font-size: 16px;
-        font-weight: bold;
-        color: black;
-    }
-    
-    /******************/
-    /* ESTILO SIN RESPUESTA
-    /******************/
-    .sinrespuesta{
-        background-color: brown;
-    }
-    
-    /******************/
-    /* ESTILO BOTON INICIAR SESION
-    /******************/
-    #enviainiciosesion{
-        background:  rgba(218, 138, 138, 1);
-    }
-    
-    /******************/
-    /* ESTILO TITULO NOTICIAS
-    /******************/
-    .titulonoticia{
-        color: rgba(235, 220, 16, 0.938);
-    }
-    
-    
-    /******************/
-    /* ESTILO CLASE INSERT CORRECTO
-    /******************/
-    .insertcorrecto{
-        background-color: green;
-        color: black;
-        padding: 10px;
-        height: 30px;
-        border: 2px white solid;
-        font-weight: bold;
-        text-align: center;
-    }
-    
-    /******************/
-    /* ESTILO CLASE INSERT INCORRECTO
-    /******************/
-    .insertcorrecto p{
-        margin-top: 4px;
-    }
-    
-    /******************/
-    /* ESTILO CONTAINER
-    /******************/
-    .container{
-        width: 100%;
-    }
-    
-    
-    /******************/
-    /* ESTILO BOTONES DE ACCION
-    /******************/
-    .botonnuevanoticia{
-        padding: 10px;
-        background: orange;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-    
-    .botonnuevojugador{
-        padding: 10px;
-        background: green;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        width: 90%;
-        font-weight: bold;
-        
-    }
-    
-    .botoneliminarjugador{
-        padding: 10px;
-        background: red;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        width: 90%;
-        font-weight: bold;
-    }
-    
-    .botonchatgeneral{
-        padding: 10px;
-        background: brown;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        width: 90%;
-        font-weight: bold;
-        margin-left: 18px;
-    }
-    
-    .botonmiequipo{
-        padding: 10px;
-        background: blue;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        width: 90%;
-        font-weight: bold;
-        
-    }
-    
-    .botoncarrito{
-        padding: 10px;
-        background: blue;
-        color:black;
-        border:2px solid black;
-        width: 90%;
-        font-weight: bold;
-        margin-top: 20px;
-    }
-    
-    
-    /******************/
-    /* ESTILO CONTENEDOR 
-    /******************/
-    .contenedor .botonbuscarjugador{
-        padding: 10px;
-        background: yellow;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-    
-    .contenedor .botonbuscarequipo{
-        padding: 10px;
-        background: yellow;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-    
-    .contenedor .logoff{
-        padding: 10px;
-        background: red;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-    
-    .contenedor #buscador{
-        padding: 0px;
-        background: beige;
-        color:black;
-        border:2px solid black;
-        border-radius: 5px;
-        font-weight: bold;
-        width: 300px;
-    }
-    
-    /******************/
-    /* ESTILO FORMULARIO REGISTRO
-    /******************/
-    .formularioregistro{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        
-    }
-    .formularioregistro input{
-    
-        width: 50%;
-        padding: 20px;
-        box-sizing: border-box;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-    }
-    
-    .formularioregistro button{
-        padding: 10px;
-        margin-top: 10px;
-        background-color: green;
-        width: 50%;
-        padding: 10px;
-        box-sizing: border-box;
-        font-weight: bold;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-    }
-    
-    /*FORMULARIO CONSULTA*/
-    /*****************************/
-    /* ESTILO FORMULARIO CONSULTA
-    /*****************************/
-    .formularioconsulta{
-        display:flex;
-        flex-direction: column;
-        align-items: center;  
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        
-    }
-    .formularioconsulta input{
-    
-        width: 50%;
-        padding: 20px;
-        box-sizing: border-box;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-    
-    }
-    
-    .formularioconsulta #resumen{
-    
-        height: 250px;
-        padding: 10px;
-        box-sizing: border-box;
-        margin-top: 0px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        resize: vertical; 
-    }
-    
-    .formularioconsulta button{
-        padding: 10px;
-        margin-top: 10px;
-        background-color: green;
-        width: 50%;
-        padding: 10px;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        font-size: 16px;
-    }
-    
-    .textoformnoticia{
-        color: white;
-        padding-bottom: 5px;
-        padding-top: 5px;
-    }
-    
-    .textoformjugador{
-        color: white;
-        padding-bottom: 5px;
-        padding-top: 5px;
-    }
-    
-    
-    /******************/
-    /* ESTILO CONTENEDOR INTERIOR
-    /******************/
-    
-    .contenedorinterior input, 
-    .contenedorinterior textarea,
-    .contenedorinterior select
-    {
-        width: 50%;
-        padding: 10px;
-        box-sizing: border-box;
-        border-radius: 5px;
-    }
-    
-    .contenedorinterior{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    
-    .contenedorinterior button{
-        padding: 10px;
-        margin-top: 20px;
-        background-color: blue;
-        width: 50%;
-        padding: 10px;
-        box-sizing: border-box;
-        font-family: 'Courier New', Courier, monospace;
-        font-weight: bold;
-        border-radius: 5px;
-    }
-    
-    /******************/
-    /* ESTILO CONTENEDOR INTERIOR 1
-    /******************/
-    .contenedorinterior1{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        
-    }
-    .contenedorinterior1 input,
-    .contenedorinterior1 textarea,
-    .contenedorinterior1 select,
-    
-    .contenedorinterior1 .botonenviarjugador
-    {
-        width: 50%;
-        padding: 15px;
-        box-sizing: border-box;
-        border-radius: 5px;
-        font-weight: bold;
 
+    main .contenedor3{
+        margin:0;
+        padding-left: 2%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
+        gap: 10px; 
+        border-top: 2px solid white;
     }
-    
-    .contenedorinterior1 button{
-        padding: 10px;
-        margin-top: 20px;
-        background-color: blue;
-        width: 50%;
-        padding: 10px;
-        box-sizing: border-box;
-        font-family: 'Courier New', Courier, monospace;
-        font-weight: bold;
-        border-radius: 5px;
+
+    main .contenedor3 #cabeceramiequipo{
+        margin:0;
+        padding:0;
+        padding-right: 2px;
     }
-    
-    
-    
-    /******************/
-    /* ESTILO CLASE JUGADOR
-    /******************/
-    .jugador {
-        display: flex; 
-        justify-content: space-around; 
-        align-items: center; 
-        width: 100%;
-        height: 200px;
+    main .contenedor3 #cabecerachats{
+        margin:0;
+        padding-left: 2%;
     }
+
+    main .contenedor3 nav{
     
-    /******************/
-    /* ESTILO CLASE JORNADAS
-    /******************/
-    
-    .jornadas{
-        display: flex; 
-        justify-content: space-around; 
-        align-items: center;
-        color:green;
-        padding: 0;
-    }
-    
-    .jornadas #elocal{
-    
-        padding: 5px;
-    }
-    .jornadas #evisitante{
-        padding: 5px;
-    }
-    
-    .tablajornadas{
-        box-sizing: border-box;
-    }
-    .tablajornadas tr td{
-        border: 1px solid white;
-        width: 200px;
-    }
-    
-    
-    /*CHATS*/
-    
-    #chat{
-        height: 70%;
-    }
-    
-    #chat .botonenviarmensaje{
-        background-color: rgba(73,181,116,100);
-        width: 20%;
-        height: 40px;
-        font-weight: bold;
-    }
-    
-    #contienemensajes{
-    
-        height: 80%;
-        background-color:black;
-        border: 1px solid white;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        overflow-y: scroll;
-        
-    }
-    
-    .mensaje{
-        color: white;
-        background-color: black;
-        border: 2px solid white;;
-    }
-    
-    #mensaje{
         width: 70%;
-        background: beige;
-        padding: 10px;
-        margin:10px;
-        text-align: left;
-        border-radius: 0%,10%,10%,10%;
-    }
-    
-    
-    
-    .texto{
-        padding: 10px;
-        font-size: 12px;
-    }
-    
-    #listadousuarios{
-        height: 400px;
-        background-color: yellow;
-    }
-    
-    
-    /* GRID DE LA TIENDA */
-    
-    .gridtienda{
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-evenly;
-        align-items: center;
-    
-        background-color: black;
-        border: 3px solid black;
-    
-        /*OCUPA TODA LA PANTALLA*/
-        
-    }
-    
-    .card{
+        border-right: 2px black solid;
         box-sizing: border-box;
-        width: 200px;
-        height: 500px;
-        margin: 10px;
-    }
-    
-    .card-body{
-        background-color: black;
+        background: black;
+        height: 100%;
         
     }
-    
-    .card-body .card-title{
-        color:white;
+
+    main .contenedor3 nav #contenedorcarrito {
+        width: 100%;
+        margin-left: 0;
+        box-sizing: border-box;
     }
-    
-    .card-body .card-text{
-        color:white;
-    }
-    
-    
-    /* CARRITO */
-    
-    #textocabecera{
-        color:white;
-    }
-    #carrito{
-        padding: 10px;
-        background: rgba(0,0,83,1);
-        color:yellow;
-        border:2px solid black;
+
+    main section{
         width: 90%;
-        font-weight: bold;
-        margin-left: 18px;
+        box-sizing: border-box;
+        background: black;
+        text-align: center;
+        margin-left: 5%;
     }
-    
+
+
+
+    #carrito{
+        margin: 0;
+        background: blue;
+        color:yellow;
+        border:2px solid white;
+        border-radius: 5px;
+        width: 100%;
+        font-weight: bold;
+        margin-top: 5%;
+    }
+
+
     .card-carrito{
         background: orange;
         color:black;
@@ -785,96 +1073,8 @@
         font-weight: bold;
     }
 
-
-    /* ESTILO TARJETA PAGO */
-
-
-    .contenedorinterior1 .tablatarjeta{
-        width: 500px;
-        padding: 0;
-        margin-left: 50px;
-        
+    .jugador{
+        height: 300px;
     }
 
-    .contenedorinterior1 .tablatarjeta .columna1tarjeta{
-        width: 25%;
-    }
-
-    .contenedorinterior1 .tablatarjeta .columna1tarjeta input{
-        width: 100%;
-    }
-
-    .contenedorinterior1 .tablatarjeta .columna2tarjeta{
-        width: 25%;
-    }
-
-    .contenedorinterior1 .tablatarjeta .columna2tarjeta input{
-        width: 100%;
-    }
-
-    .contenedorinterior1 .tablatarjeta .columna3tarjeta{
-        width: 25%;
-    }
-
-    .contenedorinterior1 .tablatarjeta .columna3tarjeta input{
-        width: 100%;
-    }
-
-    .contenedorinterior1 .tablatarjeta .columna4tarjeta{
-        width: 25%;
-    }
-
-    .contenedorinterior1 .tablatarjeta .columna4tarjeta input{
-        width: 100%;
-    }
-
-    .contenedorinterior1 .divpagotarjeta{
-        border: 2px solid white;
-        margin-top: 35px;
-        padding:20px;
-        width: 50%;
-    }
-
-
-    
-
-    .contenedorinterior1 .tablatarjeta1{
-        width: 500px;
-        padding: 0;
-        margin: 0;
-    }
-
-    .contenedorinterior1 .tablatarjeta1 .columna11tarjeta{
-        width: 45%;
-    }
-
-    .contenedorinterior1 .tablatarjeta1 .columna11tarjeta input{
-        width: 45%;
-        margin-left: 55%;
-    }
-
-    .contenedorinterior1 .tablatarjeta1 .columna22tarjeta{
-        width: 35%;
-    }
-
-    .contenedorinterior1 .tablatarjeta1 .columna22tarjeta input{
-        width: 50%;
-        margin-right: 50%;
-    }
-
-    .contenedorinterior1 .tablatarjeta1 .columna33tarjeta{
-        width: 20%;
-    }
-
-    .contenedorinterior1 .tablatarjeta1 .columna33tarjeta input{
-        width: 90%;
-        
-    }
-
-    .contenedorinterior1 .campoincorrecto{
-        background-color:  red;
-    }
-
-    .contenedorinterior1 .campocorrecto{
-        background-color:  green;
-    }
+}

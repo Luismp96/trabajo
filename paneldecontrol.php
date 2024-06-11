@@ -38,7 +38,7 @@
            comprobarAcceso();
         ?>
 
-        <header style="text-align:center">
+        <header style="text-align:center;background-color: linear-gradient(blue, black);">
             <h1>PANEL DE CONTROL</h1>
         </header>
         <main>

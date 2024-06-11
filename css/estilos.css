@@ -41,14 +41,29 @@ form input{
 }
 
 .incorrecto{
-    font-size: 150px;
-    color: red;
-    background-color: brown;
+    font-size: 30px;
+    background-color: red;
+    color: white;
+    border: 3px solid black;
+    justify-content: center;
+    text-align: center;
+    width: 30%;
+    margin-left: 35%;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 .correcto{
-    font-size: 50px;
-    color: green;
+    font-size: 30px;
+    background-color: green;
+    color: white;
+    border: 3px solid black;
+    justify-content: center;
+    text-align: center;
+    width: 30%;
+    margin-left: 35%;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 #plantillasinresultados{

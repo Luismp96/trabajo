@@ -23,18 +23,18 @@
             if($fila = mysqli_fetch_assoc($resultado)){
                 $_SESSION['usuario'] = $fila['usuario'];
                 echo "
-                    <div class='correcto'>V</div>
+                    <div class='correcto'><p>USUARIO CORRECTO.<br><br>Registrando Acceso Correcto en el Sistema. Entrando Panel de Control..</p></div>
                     <br><br>
-                    <p>USUARIO CORRECTO.<br><br>Registrando Acceso Correcto en el Sistema. Entrando Panel de Control..</p>
+                    
 
                 ";
                 //REDIRIGIMOS A PANELDECONTROL.PHP
                 echo "<meta http-equiv='refresh' content='5;     url=paneldecontrol.php'>";
             }else{
                 echo "
-                    <div class='incorrecto'>X</div>
+                    <div class='incorrecto'><p>USUARIO INCORRECTO.<br><br>Registrando Acceso Incorrecto en el Sistema.. Redirigiendo en 5s</p></div>
                     <br><br>
-                    <p>USUARIO INCORRECTO.<br><br>Registrando Acceso Incorrecto en el Sistema. Redirigiendo en 5s</p>
+                    
 
                 ";
                 //REDIRIGIMOS A INDEX.PHP

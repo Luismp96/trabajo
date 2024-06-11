@@ -696,10 +696,12 @@ window.onload = function(){
                 let plantilla = document.getElementById('plantillajugadoresb');
                 let seccion = document.querySelector('section');
                 seccion.innerHTML = "";
+                
 
                 let texto = document.createElement('p');
                 texto.innerHTML="RESULTADOS DE LA BUSQUEDA";
                 texto.style.color="green";
+                texto.style.fontSize = "35px";
 
                 seccion.appendChild(texto);
 
@@ -782,6 +784,7 @@ window.onload = function(){
                     let texto = document.createElement('p');
                     texto.innerHTML="NO HAY RESULTADOS PARA EL JUGADOR BUSCADO";
                     texto.style.color="red";
+                    texto.style.fontSize = "35px";
 
                     seccion.appendChild(texto);
                 }
@@ -825,6 +828,7 @@ window.onload = function(){
                 let texto = document.createElement('p');
                 texto.innerHTML="RESULTADOS DE LA BUSQUEDA";
                 texto.style.color="green";
+                texto.style.fontSize = "35px";
 
                 seccion.appendChild(texto);
 
@@ -915,6 +919,7 @@ window.onload = function(){
                     let texto = document.createElement('p');
                     texto.innerHTML="NO HAY RESULTADOS PARA EL EQUIPO BUSCADO";
                     texto.style.color="red";
+                    texto.style.fontSize = "35px";
 
                     seccion.appendChild(texto);
                 }
@@ -1209,13 +1214,27 @@ function bucle(){
             cadena1 = "";
     
             for(let i=0;i<datos.length;i++){
-                cadena1 += `
-                <div class="mensaje">
-                    <div class="usuario">` + datos[i].usuario+ `</div>
-                    <br>
-                    <div class="fecha">`+ datos[i].fecha+`</div>
-                    <div class="texto">`+ datos[i].mensaje+`</div>
-                </div>`
+
+                if(datos[i].usuario === valorCookieUsuario()){
+                    console.log("Es el Usuario de la Sesion");
+                    cadena1 += `
+                    <div class="mensajepropio">
+                        <div class="usuario">` + datos[i].usuario+ `</div>
+                        <br>
+                        <div class="fecha">`+ datos[i].fecha+`</div>
+                        <div class="texto">`+ datos[i].mensaje+`</div>
+                    </div>`
+                }else{
+                    console.log("No es el Usuario de la Sesion");
+                    cadena1 += `
+                    <div class="mensaje">
+                        <div class="usuario">` + datos[i].usuario+ `</div>
+                        <br>
+                        <div class="fecha">`+ datos[i].fecha+`</div>
+                        <div class="texto">`+ datos[i].mensaje+`</div>
+                    </div>`
+                }
+                
             }
             
 

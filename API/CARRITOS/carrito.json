@@ -1,0 +1,11 @@
+{
+    "productos": [
+        {
+            "precio": "39.99",
+            "nombre": "Balon de la Champions",
+            "descripcion": "Balon Champions 2024 Talla 5"
+        }
+    ],
+    "cliente": null,
+    "total": 39.99
+}
