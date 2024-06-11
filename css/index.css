@@ -632,10 +632,11 @@ section article *{
 }
 
 #chat .botonenviarmensaje{
-    background-color: rgba(73,181,116,100);
+    background-color:#00345a;
     width: 20%;
     height: 40px;
     font-weight: bold;
+    color: beige;
 }
 
 #contienemensajes{
@@ -658,7 +659,7 @@ section article *{
 
 .mensajepropio{
     color: black;
-    background-color: rgba(73,181,116,100);
+    background-color: #00345a;
     border: 2px solid black;
     font-weight: bold;
 }
