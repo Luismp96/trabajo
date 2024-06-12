@@ -478,70 +478,26 @@ function cargaCompeticionSeleccionada(identificador){
         seccion = document.querySelector('section');
         let cabecerajugadores = document.getElementById('cabeceracompeticiones');
         let importado1 = document.importNode(cabecerajugadores.content,true);
-        importado1.querySelector('p').textContent = "EQUIPOS INSCRITOS";
+
+        if (identificador == 2){
+            importado1.querySelector('p').textContent = "EQUIPOS INSCRITOS EN COPA";
+        }else{
+            importado1.querySelector('p').textContent = "EQUIPOS INSCRITOS EN LIGA DE CAMPEONES";
+        }
+        
         seccion.appendChild(importado1);
 
-        fetch("../../trabajo/API/competicionesyequipos.php?id="+identificador)
-        .then(function(response){
-            return response.json()
-        })
+        let contador = 0;
+        console.log(contador);
 
-        .then(function(datos){
+        if(contador == 0){
 
-            let participaciones = datos.participaciones;
-            console.log(participaciones);
-
-            let contador=0;
-
-            for(let j=0;participaciones.length;j++){
-
-                console.log(participaciones[j].id_equipo);
-
-                fetch("../../trabajo/API/buscarequipo.php?id="+ participaciones[j].id_equipo)
-                .then(function(response){
-                    return response.json()
-                })
-
-    
-                .then(function(datos){
-                    console.log(datos);
-
-                    let plantilla = document.getElementById('plantillaequipocompeticiones');
-                    let seccion = document.querySelector('section');
-                    let equipo = datos.equipo[0];
-    
-                    let importado = document.importNode(plantilla.content,true);
-                    importado.querySelector('h3').textContent = equipo.nombre;
-    
-                    importado.getElementById('ciudad').style.color="green";
-                    importado.querySelector('h5').textContent = equipo.ciudad;
-                    importado.querySelector('h5').style.color="white";
-    
-                    importado.getElementById('njugadores').style.color="green";
-                    let p= document.createElement("p");
-                    p.innerHTML=equipo.numerojugadores;
-                    p.style.color="white";
-    
-                    importado.getElementById('njugadores').appendChild(p);
-                    seccion.appendChild(importado);
-
-                })
-        
-                contador++;
-            }
-
-            console.log(contador);
-
-            if(contador == 0){
-
-                let seccion = document.querySelector('section');
-                let plantilla2 = document.getElementById('plantillasinresultadocompeticion');
-                let importado2 = document.importNode(plantilla2.content,true);
-                importado2.querySelector('p').textContent = "No hay equipos inscritos en esta competicion.";
-                seccion.appendChild(importado2);
-            }
-
-        })
+            let seccion = document.querySelector('section');
+            let plantilla2 = document.getElementById('plantillasinresultadocompeticion');
+            let importado2 = document.importNode(plantilla2.content,true);
+            importado2.querySelector('p').textContent = "No hay equipos inscritos en esta competicion.";
+            seccion.appendChild(importado2);
+        }
 
     } 
 
@@ -1150,4 +1106,3 @@ function mostrarCarritoUsuario(usuario){
         }
     })
 }
-

@@ -15,9 +15,7 @@
         $datos[] = $fila;
     }
 
-    $contenido['participaciones'] = $datos;
-
-    $json = json_encode($contenido,JSON_PRETTY_PRINT);
+    $json = json_encode($datos,JSON_PRETTY_PRINT);
     echo $json;
     
 ?>
