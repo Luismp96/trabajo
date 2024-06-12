@@ -481,7 +481,7 @@ window.onload = function(){
                     let boton = document.createElement("button");
                     boton.setAttribute("value","enviar");
                     boton.classList.add("botonenviarjugador");
-                    boton.innerHTML = "Enviar";
+                    boton.innerHTML = "ENVIAR";
                     contenedor.appendChild(boton);
 
                     boton.onclick = function(){
@@ -637,7 +637,8 @@ window.onload = function(){
         
                     let boton = document.createElement("button");
                     boton.setAttribute("value","enviar");
-                    boton.innerHTML = "Enviar";
+                    boton.innerHTML = "ENVIAR";
+                    boton.style.color="white";
         
                     contenedor.appendChild(boton);
                     seccion.appendChild(contenedor);
